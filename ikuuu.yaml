@@ -2429,6 +2429,8 @@ sub-rules:
   - DOMAIN-SUFFIX,home.arpa,🎯全球直连
   - DOMAIN,openwrt.lan,🎯全球直连
   - DOMAIN,router.lan,🎯全球直连
+  - DOMAIN,speedtest.cn,🎯全球直连
+  - DOMAIN,dlcv2.cnspeedtest.cn,🎯全球直连
   - RULE-SET,appstore_domain,AppStore
   - RULE-SET,applemail_domain,Apple邮箱
   - RULE-SET,applemusic_domain,Apple音乐
