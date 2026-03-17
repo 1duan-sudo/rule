@@ -1,5 +1,5 @@
 proxy-providers:
-  此段话删除填写机场名称:
+ 此段话删除填写机场名称:
     url: 此处填写订阅配置
     type: http
     interval: 86400
@@ -76,6 +76,9 @@ dns:
   - openwrt.lan
   - router.lan
   - localhost
+  - +.mijia.tech
+  - core.api.mijia.tech
+  - stream.api.mijia.tech
   - rule-set:fakeip_filter_domain
   default-nameserver:
   - https://223.5.5.5/dns-query
@@ -86,6 +89,8 @@ dns:
   - https://dns.alidns.com/dns-query
   - https://doh.pub/dns-query
   nameserver:
+  - https://223.5.5.5/dns-query
+  - https://119.29.29.29/dns-query
   - https://8.8.8.8/dns-query
 rule-providers:
   cn_domain:
@@ -1389,9 +1394,16 @@ proxy-groups:
   hidden: true
   proxies:
   - PASS
+- name: ⛔拒绝连接
+  type: select
+  hidden: true
+  proxies:
+  - REJECT
 - name: 🎯全球直连
   type: select
   proxies:
+  - ⚪绕过连接
+  - ⛔拒绝连接
   - 🎯全局直连
   - 🚀全球代理
   - 🟢手动选择
@@ -2420,17 +2432,22 @@ rules:
 - MATCH,🚀全球代理
 sub-rules:
   SUB-RULES:
-  - IP-CIDR,127.0.0.0/8,🎯全球直连,no-resolve
-  - IP-CIDR,10.0.0.0/8,🎯全球直连,no-resolve
-  - IP-CIDR,172.16.0.0/12,🎯全球直连,no-resolve
-  - IP-CIDR,192.168.0.0/16,🎯全球直连,no-resolve
-  - DOMAIN-SUFFIX,lan,🎯全球直连
-  - DOMAIN-SUFFIX,local,🎯全球直连
-  - DOMAIN-SUFFIX,home.arpa,🎯全球直连
-  - DOMAIN,openwrt.lan,🎯全球直连
-  - DOMAIN,router.lan,🎯全球直连
+  - IP-CIDR,127.0.0.0/8,🎯全局直连,no-resolve
+  - IP-CIDR,10.0.0.0/8,🎯全局直连,no-resolve
+  - IP-CIDR,172.16.0.0/12,🎯全局直连,no-resolve
+  - IP-CIDR,192.168.0.2/32,🎯全局直连,no-resolve
+  - IP-CIDR,192.168.0.1/32,🎯全局直连,no-resolve
+  - IP-CIDR,192.168.0.0/16,🎯全局直连,no-resolve
+  - DOMAIN-SUFFIX,lan,🎯全局直连
+  - DOMAIN-SUFFIX,local,🎯全局直连
+  - DOMAIN-SUFFIX,home.arpa,🎯全局直连
+  - DOMAIN,openwrt.lan,🎯全局直连
+  - DOMAIN,router.lan,🎯全局直连
   - DOMAIN,speedtest.cn,🎯全球直连
   - DOMAIN,dlcv2.cnspeedtest.cn,🎯全球直连
+  - DOMAIN,core.api.mijia.tech,🎯全球直连
+  - DOMAIN,stream.api.mijia.tech,🎯全球直连
+  - DOMAIN-SUFFIX,mijia.tech,🎯全球直连
   - RULE-SET,appstore_domain,AppStore
   - RULE-SET,applemail_domain,Apple邮箱
   - RULE-SET,applemusic_domain,Apple音乐
