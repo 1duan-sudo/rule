@@ -1,5 +1,5 @@
 proxy-providers:
-  这段删掉填写订阅名称:
+  此处将文字删除填写订阅名称:
     type: http
     interval: 86400
     health-check:
@@ -8,9 +8,9 @@ proxy-providers:
       interval: 300
     filter: ^(?!.*(拒绝|直连|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|traffic))
     proxy: 🟢 直连
-    url: 填写订阅节点
+    url: 此处删除，填写的订阅链接
     override:
-      additional-prefix: '填写机场名称'
+      additional-prefix: '此处填写机场名称'
       skip-cert-verify: true
       udp: true
 global-ua: clash.meta
@@ -19,8 +19,6 @@ ipv6: true
 allow-lan: true
 unified-delay: true
 tcp-concurrent: true
-authentication:
-- ''
 skip-auth-prefixes:
 - 127.0.0.1/8
 - ::1/128
@@ -33,11 +31,11 @@ geox-url:
   mmdb: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.metadb
   geoip: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat
   asn: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb
-external-controller: 0.0.0.0:9090
-secret: ''
+external-controller: 127.0.0.1:9090
+secret: "openclash_local_2026"
 external-ui: ui
 external-ui-url: https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip
-find-process-mode: strict
+find-process-mode: "off"
 keep-alive-idle: 600
 keep-alive-interval: 30
 profile:
@@ -341,8 +339,8 @@ proxy-groups:
   type: select
   include-all: true
   proxies:
-  - 🚀全球代理
   - 🎯直连策略
+  - 🚀全球代理
   - ♻️自动选择
   - ⚡️均衡负载
   - 🔯故障转移
@@ -351,8 +349,8 @@ proxy-groups:
   type: select
   include-all: true
   proxies:
-  - 🚀全球代理
   - 🎯直连策略
+  - 🚀全球代理
   - ♻️自动选择
   - ⚡️均衡负载
   - 🔯故障转移
@@ -361,8 +359,8 @@ proxy-groups:
   type: select
   include-all: true
   proxies:
-  - 🚀全球代理
   - 🎯直连策略
+  - 🚀全球代理
   - ♻️自动选择
   - ⚡️均衡负载
   - 🔯故障转移
@@ -641,8 +639,8 @@ proxy-groups:
   type: select
   include-all: true
   proxies:
-  - 🎯直连策略
   - 🚀全球代理
+  - 🎯直连策略
   - ♻️自动选择
   - ⚡️均衡负载
   - 🔯故障转移
@@ -3010,7 +3008,15 @@ sub-rules:
   - DOMAIN,core.api.mijia.tech,🎯直连策略
   - DOMAIN,stream.api.mijia.tech,🎯直连策略
   - DOMAIN-SUFFIX,mijia.tech,🎯直连策略
-
+  - DOMAIN,download.epicgames.com,🎯直连策略
+  - DOMAIN,download2.epicgames.com,🎯直连策略
+  - DOMAIN,download3.epicgames.com,🎯直连策略
+  - DOMAIN,download4.epicgames.com,🎯直连策略
+  - DOMAIN,fastly-download.epicgames.com,🎯直连策略
+  - DOMAIN,epicgames-download1.akamaized.net,🎯直连策略
+  - RULE-SET,steamcdn_domain,🎯直连策略
+  - RULE-SET,steamcdn_ip,🎯直连策略,no-resolve
+  - RULE-SET,microsoftedge_domain,🎯直连策略
   # =========================
   # 自定义代理规则区（自己手动加代理规则，就加在这里）
   # 常用目标：
@@ -3138,13 +3144,13 @@ sub-rules:
   - OR,((RULE-SET,bing_domain),(RULE-SET,teams_domain),(RULE-SET,microsoftedge_domain),(RULE-SET,microsoft_domain),(DOMAIN-KEYWORD,microsoft),(DOMAIN-KEYWORD,skydrive)),微软
   - RULE-SET,chinamedia_domain,中国媒体
   - RULE-SET,bytedance_domain,字节跳动
-  - RULE-SET,tencent_domain,腾讯
+  - RULE-SET,tencent!cn_domain,🚀全球代理
+  - RULE-SET,tencent_domain,🎯直连策略
   - RULE-SET,alibaba_domain,阿里巴巴
   - RULE-SET,netease_ip,网易,no-resolve
   - RULE-SET,iqiyi_ip,爱奇艺,no-resolve
   - RULE-SET,neteasemusic_ip,网易云音乐,no-resolve
   - RULE-SET,bytedance_ip,字节跳动,no-resolve
-  - RULE-SET,tencent_ip,腾讯,no-resolve
   - RULE-SET,alibaba_ip,阿里巴巴,no-resolve
   - RULE-SET,bilibili_ip,哔哩哔哩,no-resolve
   - RULE-SET,chinamedia_ip,中国媒体,no-resolve
