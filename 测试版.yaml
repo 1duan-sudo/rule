@@ -1,5 +1,5 @@
 proxy-providers:
-  此处将文字删除填写订阅名称:
+  此段删除填写订阅名称:
     type: http
     interval: 86400
     health-check:
@@ -8,9 +8,9 @@ proxy-providers:
       interval: 300
     filter: ^(?!.*(拒绝|直连|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|traffic))
     proxy: 🟢 直连
-    url: 此处删除，填写的订阅链接
+    url: 填写订阅链接
     override:
-      additional-prefix: '此处填写机场名称'
+      additional-prefix: '填写机场名称'
       skip-cert-verify: true
       udp: true
 global-ua: clash.meta
@@ -32,15 +32,15 @@ geox-url:
   geoip: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat
   asn: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb
 external-controller: 127.0.0.1:9090
-secret: "openclash_local_2026"
+secret: ''
 external-ui: ui
 external-ui-url: https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip
-find-process-mode: "off"
+find-process-mode: 'off'
 keep-alive-idle: 600
 keep-alive-interval: 30
 profile:
-  store-selected: false
-  store-fake-ip: false
+  store-selected: true
+  store-fake-ip: true
 sniffer:
   enable: true
   sniff:
@@ -58,19 +58,19 @@ sniffer:
       - 443
       - 8443
   force-domain:
-  - '*.v2ex.com'
+  - +.v2ex.com
   skip-domain:
   - Mijia Cloud
   - dlg.io.mi.com
-  - '*.push.apple.com'
-  - '*.apple.com'
-  - '*.wechat.com'
-  - '*.qpic.cn'
-  - '*.qq.com'
-  - '*.wechatapp.com'
-  - '*.vivox.com'
-  - '*.oray.com'
-  - '*.sunlogin.net'
+  - +.push.apple.com
+  - +.apple.com
+  - +.wechat.com
+  - +.qpic.cn
+  - +.qq.com
+  - +.wechatapp.com
+  - +.vivox.com
+  - +.oray.com
+  - +.sunlogin.net
 tun:
   enable: true
   stack: gvisor
@@ -89,10 +89,30 @@ dns:
   respect-rules: true
   enhanced-mode: fake-ip
   fake-ip-range: 28.0.0.1/8
-  fake-ip-range6: 2001:480:abcd::1/64
+  fake-ip-range6: fdfe:dcba:9876::1/64
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
-  - rule-set:fakeip_filter_domain,game_cn_domain,bank_cn_domain,wechat_domain,ai_cn_domain,NetEaseMusic_domain,fcm_domain,alibaba_domain,media_cn_domain,xiaomi_domain,steam_cn_domain,pt_cn_domain,public-tracker_domain,115_domain,aliyun_domain,direct_domain,apple_cn_domain,apple_firmware_domain,iptv_domain,private_domain,cn_domain
+  - rule-set:fakeip_filter_domain
+  - rule-set:game_cn_domain
+  - rule-set:bank_cn_domain
+  - rule-set:wechat_domain
+  - rule-set:ai_cn_domain
+  - rule-set:NetEaseMusic_domain
+  - rule-set:fcm_domain
+  - rule-set:alibaba_domain
+  - rule-set:media_cn_domain
+  - rule-set:xiaomi_domain
+  - rule-set:steam_cn_domain
+  - rule-set:pt_cn_domain
+  - rule-set:public-tracker_domain
+  - rule-set:115_domain
+  - rule-set:aliyun_domain
+  - rule-set:direct_domain
+  - rule-set:apple_cn_domain
+  - rule-set:apple_firmware_domain
+  - rule-set:iptv_domain
+  - rule-set:private_domain
+  - rule-set:cn_domain
   default-nameserver:
   - 119.29.29.29
   - 180.184.1.1
@@ -339,8 +359,8 @@ proxy-groups:
   type: select
   include-all: true
   proxies:
-  - 🎯直连策略
   - 🚀全球代理
+  - 🎯直连策略
   - ♻️自动选择
   - ⚡️均衡负载
   - 🔯故障转移
@@ -349,8 +369,8 @@ proxy-groups:
   type: select
   include-all: true
   proxies:
-  - 🎯直连策略
   - 🚀全球代理
+  - 🎯直连策略
   - ♻️自动选择
   - ⚡️均衡负载
   - 🔯故障转移
@@ -359,8 +379,8 @@ proxy-groups:
   type: select
   include-all: true
   proxies:
-  - 🎯直连策略
   - 🚀全球代理
+  - 🎯直连策略
   - ♻️自动选择
   - ⚡️均衡负载
   - 🔯故障转移
@@ -639,8 +659,8 @@ proxy-groups:
   type: select
   include-all: true
   proxies:
-  - 🚀全球代理
   - 🎯直连策略
+  - 🚀全球代理
   - ♻️自动选择
   - ⚡️均衡负载
   - 🔯故障转移
@@ -1360,12 +1380,6 @@ rule-anchor:
     behavior: classical
     format: yaml
 rule-providers:
-  ai!cn_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-    url: https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-ai-!cn.mrs
   ai_cn_domain:
     type: http
     interval: 86400
@@ -1378,12 +1392,6 @@ rule-providers:
     behavior: domain
     format: mrs
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/aliyun.mrs
-  Amazon_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/amazon.mrs
   apple_cn_domain:
     type: http
     interval: 86400
@@ -1396,36 +1404,6 @@ rule-providers:
     behavior: domain
     format: mrs
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-bank-cn.mrs
-  Blizzard_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/blizzard.mrs
-  Cloudflare_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/cloudflare.mrs
-  EA_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/ea.mrs
-  ebay_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/ebay.mrs
-  Epic_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/epicgames.mrs
   fcm_domain:
     type: http
     interval: 86400
@@ -1438,66 +1416,12 @@ rule-providers:
     behavior: domain
     format: mrs
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-games%40cn.mrs
-  geolocation-!cn:
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs
-  gfw_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs
-  gitbook_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/gitbook.mrs
-  ifast_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/ifast.mrs
-  media!cn_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-social-media-!cn.mrs
   media_cn_domain:
     type: http
     interval: 86400
     behavior: domain
     format: mrs
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-media-cn.mrs
-  meta_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/meta.mrs
-  Nintendo_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/nintendo.mrs
-  porn_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-porn.mrs
-  primevideo_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/primevideo.mrs
   private_domain:
     type: http
     interval: 86400
@@ -1516,24 +1440,6 @@ rule-providers:
     behavior: domain
     format: mrs
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-public-tracker.mrs
-  Shopee_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/shopee.mrs
-  Shopify_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/shopify.mrs
-  Sony_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/sony.mrs
   steam_cn_domain:
     type: http
     interval: 86400
@@ -1546,24 +1452,6 @@ rule-providers:
     behavior: domain
     format: mrs
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/tencent%40!cn.mrs
-  threads_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/threads.mrs
-  whatsapp_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/whatsapp.mrs
-  Wise_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/wise.mrs
   xiaomi_domain:
     type: http
     interval: 86400
@@ -2538,36 +2426,18 @@ rule-providers:
     proxy: 🚀全球代理
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/YouTubeMusic/YouTubeMusic_OCD_Domain.mrs
     path: ./ruleset/YouTubeMusic_Domain.mrs
-  ai_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-    url: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/ai.mrs
   apple_firmware_domain:
     type: http
     interval: 86400
     behavior: domain
     format: mrs
     url: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/applefirmware.mrs
-  appleTV_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-    url: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/appletv.mrs
   direct_domain:
     type: http
     interval: 86400
     behavior: domain
     format: mrs
     url: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/direct.mrs
-  googlevpn_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-    url: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/googleVPN.mrs
   iptv_domain:
     type: http
     interval: 86400
@@ -2580,30 +2450,6 @@ rule-providers:
     behavior: domain
     format: mrs
     url: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/NetEaseMusic-domain.mrs
-  proxy_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-    url: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/proxy.mrs
-  steamcdn_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-    url: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/Steam-domain.mrs
-  TVB_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-    url: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/tvb.mrs
-  UBI_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    format: mrs
-    url: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/ubi.mrs
   4gtv_domain:
     type: http
     interval: 86400
@@ -2668,12 +2514,6 @@ rule-providers:
     proxy: 🚀全球代理
     url: https://raw.githubusercontent.com/DustinWin/ruleset_geodata/mihomo-ruleset/fakeip-filter.mrs
     path: ./ruleset/Fakeip_Filter_Domain.mrs
-  private_ip:
-    type: http
-    interval: 86400
-    behavior: ipcidr
-    format: mrs
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/private.mrs
   cloudflare_ip:
     type: http
     interval: 86400
@@ -2906,48 +2746,6 @@ rule-providers:
     proxy: 🚀全球代理
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/YouTube/YouTube_OCD_IP.mrs
     path: ./ruleset/YouTube_IP.mrs
-  Amazon_ip:
-    type: http
-    interval: 86400
-    behavior: ipcidr
-    format: mrs
-    url: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/IP/amazon-ip.mrs
-  discord_asn:
-    type: http
-    interval: 86400
-    behavior: ipcidr
-    format: mrs
-    url: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/IP/AS49544.mrs
-  emby_ip:
-    type: http
-    interval: 86400
-    behavior: ipcidr
-    format: mrs
-    url: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/IP/emby-ip.mrs
-  google_asn_cn:
-    type: http
-    interval: 86400
-    behavior: ipcidr
-    format: mrs
-    url: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/IP/AS24424.mrs
-  NetEaseMusic_ip:
-    type: http
-    interval: 86400
-    behavior: ipcidr
-    format: mrs
-    url: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/IP/NetEaseMusic-ip.mrs
-  steamcdn_ip:
-    type: http
-    interval: 86400
-    behavior: ipcidr
-    format: mrs
-    url: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/IP/steamCDN-ip.mrs
-  wechat_asn:
-    type: http
-    interval: 86400
-    behavior: ipcidr
-    format: mrs
-    url: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/IP/AS132203.mrs
   ehgallery_ip:
     type: http
     interval: 86400
@@ -3008,15 +2806,13 @@ sub-rules:
   - DOMAIN,core.api.mijia.tech,🎯直连策略
   - DOMAIN,stream.api.mijia.tech,🎯直连策略
   - DOMAIN-SUFFIX,mijia.tech,🎯直连策略
-  - DOMAIN,download.epicgames.com,🎯直连策略
-  - DOMAIN,download2.epicgames.com,🎯直连策略
-  - DOMAIN,download3.epicgames.com,🎯直连策略
-  - DOMAIN,download4.epicgames.com,🎯直连策略
-  - DOMAIN,fastly-download.epicgames.com,🎯直连策略
-  - DOMAIN,epicgames-download1.akamaized.net,🎯直连策略
-  - RULE-SET,steamcdn_domain,🎯直连策略
-  - RULE-SET,steamcdn_ip,🎯直连策略,no-resolve
-  - RULE-SET,microsoftedge_domain,🎯直连策略
+  - DOMAIN,fastly-download.epicgames.com,🎯强制直连
+  - DOMAIN,epicgames-download1.akamaized.net,🎯强制直连
+  - DOMAIN,download.epicgames.com,🎯强制直连
+  - DOMAIN,library-service.live.use1a.on.epicgames.com,🎯强制直连
+  - DOMAIN,launcher-public-service-prod06.ol.epicgames.com,🎯强制直连
+  - DOMAIN,entitlement-public-service-prod08.ol.epicgames.com,🎯强制直连
+  - DOMAIN,lightswitch-public-service-prod06.ol.epicgames.com,🎯强制直连
   # =========================
   # 自定义代理规则区（自己手动加代理规则，就加在这里）
   # 常用目标：
@@ -3030,6 +2826,19 @@ sub-rules:
   # - DOMAIN-KEYWORD,openai,🟢手动选择
   # - DOMAIN-SUFFIX,telegram.org,♻️自动选择
   # =========================
+  - RULE-SET,tencent!cn_domain,🚀全球代理
+  - DOMAIN-SUFFIX,riotgames.com,🚀全球代理
+  - DOMAIN-SUFFIX,pvp.net,🚀全球代理
+  - DOMAIN-SUFFIX,riotcdn.net,🚀全球代理
+  - DOMAIN-SUFFIX,riotstatic.com,🚀全球代理
+  - DOMAIN-SUFFIX,leagueoflegends.com,🚀全球代理
+  - DOMAIN-SUFFIX,playvalorant.com,🚀全球代理
+  - DOMAIN-SUFFIX,levelinfinite.com,🚀全球代理
+  - DOMAIN-SUFFIX,pass.levelinfinite.com,🚀全球代理
+  - DOMAIN-SUFFIX,tencentgames.com,🚀全球代理
+  - DOMAIN-SUFFIX,timistudios.com,🚀全球代理
+  - DOMAIN-SUFFIX,lightspeed-studios.com,🚀全球代理
+  - DOMAIN-SUFFIX,proximabeta.com,🚀全球代理
   - DOMAIN-SUFFIX,hgamefree.info,🚀全球代理
   - RULE-SET,appstore_domain,AppStore
   - RULE-SET,applemail_domain,Apple邮箱
@@ -3144,13 +2953,13 @@ sub-rules:
   - OR,((RULE-SET,bing_domain),(RULE-SET,teams_domain),(RULE-SET,microsoftedge_domain),(RULE-SET,microsoft_domain),(DOMAIN-KEYWORD,microsoft),(DOMAIN-KEYWORD,skydrive)),微软
   - RULE-SET,chinamedia_domain,中国媒体
   - RULE-SET,bytedance_domain,字节跳动
-  - RULE-SET,tencent!cn_domain,🚀全球代理
-  - RULE-SET,tencent_domain,🎯直连策略
+  - RULE-SET,tencent_domain,腾讯
   - RULE-SET,alibaba_domain,阿里巴巴
   - RULE-SET,netease_ip,网易,no-resolve
   - RULE-SET,iqiyi_ip,爱奇艺,no-resolve
   - RULE-SET,neteasemusic_ip,网易云音乐,no-resolve
   - RULE-SET,bytedance_ip,字节跳动,no-resolve
+  - RULE-SET,tencent_ip,腾讯,no-resolve
   - RULE-SET,alibaba_ip,阿里巴巴,no-resolve
   - RULE-SET,bilibili_ip,哔哩哔哩,no-resolve
   - RULE-SET,chinamedia_ip,中国媒体,no-resolve
@@ -3178,5 +2987,5 @@ sub-rules:
   - RULE-SET,youtube_ip,YouTube,no-resolve
   - RULE-SET,globalmedia_ip,国际媒体,no-resolve
   - RULE-SET,cloudflare_ip,Cloudflare,no-resolve
-  - AND,((NETWORK,UDP),(DST-PORT,123)),🎯直连策略
+  - AND,((NETWORK,UDP),(DST-PORT,123)),🎯强制直连
   - OR,((AND,((RULE-SET,cn_domain),(RULE-SET,cn_ip))),(RULE-SET,cn_ip,no-resolve)),🎯直连策略
