@@ -123,8 +123,8 @@ dns:
   - https://doh.pub/dns-query
   - https://223.5.5.5/dns-query#h3=true
   nameserver:
-  - https://dns.google/dns-query
-  - https://dns.cloudflare.com/dns-query
+  - https://doh.pub/dns-query
+  - https://223.5.5.5/dns-query#h3=true
 proxies:
 - name: 🟢 直连
   type: direct
@@ -359,8 +359,8 @@ proxy-groups:
   type: select
   include-all: true
   proxies:
-  - 🚀全球代理
   - 🎯直连策略
+  - 🚀全球代理
   - ♻️自动选择
   - ⚡️均衡负载
   - 🔯故障转移
@@ -369,8 +369,8 @@ proxy-groups:
   type: select
   include-all: true
   proxies:
-  - 🚀全球代理
   - 🎯直连策略
+  - 🚀全球代理
   - ♻️自动选择
   - ⚡️均衡负载
   - 🔯故障转移
@@ -379,8 +379,8 @@ proxy-groups:
   type: select
   include-all: true
   proxies:
-  - 🚀全球代理
   - 🎯直连策略
+  - 🚀全球代理
   - ♻️自动选择
   - ⚡️均衡负载
   - 🔯故障转移
@@ -659,8 +659,8 @@ proxy-groups:
   type: select
   include-all: true
   proxies:
-  - 🎯直连策略
   - 🚀全球代理
+  - 🎯直连策略
   - ♻️自动选择
   - ⚡️均衡负载
   - 🔯故障转移
@@ -1386,84 +1386,97 @@ rule-providers:
     behavior: domain
     format: mrs
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-cn.mrs
+    proxy: ♻️自动选择
   aliyun_domain:
     type: http
     interval: 86400
     behavior: domain
     format: mrs
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/aliyun.mrs
+    proxy: ♻️自动选择
   apple_cn_domain:
     type: http
     interval: 86400
     behavior: domain
     format: mrs
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/apple%40cn.mrs
+    proxy: ♻️自动选择
   bank_cn_domain:
     type: http
     interval: 86400
     behavior: domain
     format: mrs
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-bank-cn.mrs
+    proxy: ♻️自动选择
   fcm_domain:
     type: http
     interval: 86400
     behavior: domain
     format: mrs
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/googlefcm.mrs
+    proxy: ♻️自动选择
   game_cn_domain:
     type: http
     interval: 86400
     behavior: domain
     format: mrs
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-games%40cn.mrs
+    proxy: ♻️自动选择
   media_cn_domain:
     type: http
     interval: 86400
     behavior: domain
     format: mrs
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-media-cn.mrs
+    proxy: ♻️自动选择
   private_domain:
     type: http
     interval: 86400
     behavior: domain
     format: mrs
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs
+    proxy: ♻️自动选择
   pt_cn_domain:
     type: http
     interval: 86400
     behavior: domain
     format: mrs
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-pt.mrs
+    proxy: ♻️自动选择
   public-tracker_domain:
     type: http
     interval: 86400
     behavior: domain
     format: mrs
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-public-tracker.mrs
+    proxy: ♻️自动选择
   steam_cn_domain:
     type: http
     interval: 86400
     behavior: domain
     format: mrs
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/steam%40cn.mrs
+    proxy: ♻️自动选择
   tencent!cn_domain:
     type: http
     interval: 86400
     behavior: domain
     format: mrs
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/tencent%40!cn.mrs
+    proxy: ♻️自动选择
   xiaomi_domain:
     type: http
     interval: 86400
     behavior: domain
     format: mrs
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/xiaomi.mrs
+    proxy: ♻️自动选择
   18comic_domain:
     type: http
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/18comic.mrs
     path: ./ruleset/18comic_Domain.mrs
   biliintl_domain:
@@ -1471,7 +1484,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/biliintl.mrs
     path: ./ruleset/biliintl_Domain.mrs
   cloudflare_domain:
@@ -1479,7 +1492,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cloudflare.mrs
     path: ./ruleset/Cloudflare_Domain.mrs
   facebook_domain:
@@ -1487,7 +1500,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/facebook.mrs
     path: ./ruleset/Facebook_Domain.mrs
   fastly_domain:
@@ -1495,7 +1508,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/fastly.mrs
     path: ./ruleset/Fastly_Domain.mrs
   google_domain:
@@ -1503,7 +1516,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs
     path: ./ruleset/Google_Domain.mrs
   hoyoverse_domain:
@@ -1511,7 +1524,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/hoyoverse.mrs
     path: ./ruleset/Hoyoverse_Domain.mrs
   kugou_domain:
@@ -1519,7 +1532,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/kugou.mrs
     path: ./ruleset/Kugou_Domain.mrs
   kuwo_domain:
@@ -1527,7 +1540,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/kuwo.mrs
     path: ./ruleset/Kuwo_Domain.mrs
   mihoyo_domain:
@@ -1535,7 +1548,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/mihoyo.mrs
     path: ./ruleset/Mihoyo_Domain.mrs
   netflix_domain:
@@ -1543,7 +1556,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs
     path: ./ruleset/Netflix_Domain.mrs
   picacg_domain:
@@ -1551,7 +1564,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/picacg.mrs
     path: ./ruleset/Picacg_Domain.mrs
   signal_domain:
@@ -1559,7 +1572,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/signal.mrs
     path: ./ruleset/Signal_Domain.mrs
   telegram_domain:
@@ -1567,7 +1580,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs
     path: ./ruleset/Telegram_Domain.mrs
   tor_domain:
@@ -1575,7 +1588,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tor.mrs
     path: ./ruleset/Tor_Domain.mrs
   twitter_domain:
@@ -1583,7 +1596,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/twitter.mrs
     path: ./ruleset/Twitter_Domain.mrs
   wise_domain:
@@ -1591,7 +1604,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/wise.mrs
     path: ./ruleset/Wise_Domain.mrs
   115_domain:
@@ -1599,7 +1612,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/115/115_OCD_Domain.mrs
     path: ./ruleset/115_Domain.mrs
   12306_domain:
@@ -1607,7 +1620,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/12306/12306_OCD_Domain.mrs
     path: ./ruleset/12306_Domain.mrs
   4399_domain:
@@ -1615,7 +1628,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/4399/4399_OCD_Domain.mrs
     path: ./ruleset/4399_Domain.mrs
   58tongcheng_domain:
@@ -1623,7 +1636,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/58TongCheng/58TongCheng_OCD_Domain.mrs
     path: ./ruleset/58TongCheng_Domain.mrs
   abc_domain:
@@ -1631,7 +1644,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/ABC/ABC_OCD_Domain.mrs
     path: ./ruleset/ABC_Domain.mrs
   abematv_domain:
@@ -1639,7 +1652,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AbemaTV/AbemaTV_OCD_Domain.mrs
     path: ./ruleset/AbemaTV_Domain.mrs
   adobe_domain:
@@ -1647,7 +1660,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Adobe/Adobe_OCD_Domain.mrs
     path: ./ruleset/Adobe_Domain.mrs
   alibaba_domain:
@@ -1655,7 +1668,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Alibaba/Alibaba_OCD_Domain.mrs
     path: ./ruleset/Alibaba_Domain.mrs
   alipay_domain:
@@ -1663,7 +1676,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AliPay/AliPay_OCD_Domain.mrs
     path: ./ruleset/AliPay_Domain.mrs
   amazon_domain:
@@ -1671,7 +1684,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Amazon/Amazon_OCD_Domain.mrs
     path: ./ruleset/Amazon_Domain.mrs
   amazonprimevideo_domain:
@@ -1679,7 +1692,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AmazonPrimeVideo/AmazonPrimeVideo_OCD_Domain.mrs
     path: ./ruleset/AmazonPrimeVideo_Domain.mrs
   apple_domain:
@@ -1687,7 +1700,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Apple/Apple_OCD_Domain.mrs
     path: ./ruleset/Apple_Domain.mrs
   appledaily_domain:
@@ -1695,7 +1708,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AppleDaily/AppleDaily_OCD_Domain.mrs
     path: ./ruleset/AppleDaily_Domain.mrs
   appledev_domain:
@@ -1703,7 +1716,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AppleDev/AppleDev_OCD_Domain.mrs
     path: ./ruleset/AppleDev_Domain.mrs
   applefirmware_domain:
@@ -1711,7 +1724,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AppleFirmware/AppleFirmware_OCD_Domain.mrs
     path: ./ruleset/AppleFirmware_Domain.mrs
   applehardware_domain:
@@ -1719,7 +1732,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AppleHardware/AppleHardware_OCD_Domain.mrs
     path: ./ruleset/AppleHardware_Domain.mrs
   appleid_domain:
@@ -1727,7 +1740,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AppleID/AppleID_OCD_Domain.mrs
     path: ./ruleset/AppleID_Domain.mrs
   applemail_domain:
@@ -1735,7 +1748,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AppleMail/AppleMail_OCD_Domain.mrs
     path: ./ruleset/AppleMail_Domain.mrs
   applemedia_domain:
@@ -1743,7 +1756,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AppleMedia/AppleMedia_OCD_Domain.mrs
     path: ./ruleset/AppleMedia_Domain.mrs
   applemusic_domain:
@@ -1751,7 +1764,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AppleMusic/AppleMusic_OCD_Domain.mrs
     path: ./ruleset/AppleMusic_Domain.mrs
   applenews_domain:
@@ -1759,7 +1772,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AppleNews/AppleNews_OCD_Domain.mrs
     path: ./ruleset/AppleNews_Domain.mrs
   appleproxy_domain:
@@ -1767,7 +1780,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AppleProxy/AppleProxy_OCD_Domain.mrs
     path: ./ruleset/AppleProxy_Domain.mrs
   appletv_domain:
@@ -1775,7 +1788,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AppleTV/AppleTV_OCD_Domain.mrs
     path: ./ruleset/AppleTV_Domain.mrs
   appstore_domain:
@@ -1783,7 +1796,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AppStore/AppStore_OCD_Domain.mrs
     path: ./ruleset/AppStore_Domain.mrs
   bahamut_domain:
@@ -1791,7 +1804,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Bahamut/Bahamut_OCD_Domain.mrs
     path: ./ruleset/Bahamut_Domain.mrs
   baidu_domain:
@@ -1799,7 +1812,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Baidu/Baidu_OCD_Domain.mrs
     path: ./ruleset/Baidu_Domain.mrs
   baidutieba_domain:
@@ -1807,7 +1820,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/BaiDuTieBa/BaiDuTieBa_OCD_Domain.mrs
     path: ./ruleset/BaiDuTieBa_Domain.mrs
   beats_domain:
@@ -1815,7 +1828,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Beats/Beats_OCD_Domain.mrs
     path: ./ruleset/Beats_Domain.mrs
   bilibili_domain:
@@ -1823,7 +1836,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/BiliBili/BiliBili_OCD_Domain.mrs
     path: ./ruleset/BiliBili_Domain.mrs
   bing_domain:
@@ -1831,7 +1844,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Bing/Bing_OCD_Domain.mrs
     path: ./ruleset/Bing_Domain.mrs
   blizzard_domain:
@@ -1839,7 +1852,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Blizzard/Blizzard_OCD_Domain.mrs
     path: ./ruleset/Blizzard_Domain.mrs
   bytedance_domain:
@@ -1847,7 +1860,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/ByteDance/ByteDance_OCD_Domain.mrs
     path: ./ruleset/ByteDance_Domain.mrs
   cctv_domain:
@@ -1855,7 +1868,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/CCTV/CCTV_OCD_Domain.mrs
     path: ./ruleset/CCTV_Domain.mrs
   chinamedia_domain:
@@ -1863,7 +1876,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/ChinaMedia/ChinaMedia_OCD_Domain.mrs
     path: ./ruleset/ChinaMedia_Domain.mrs
   claude_domain:
@@ -1871,7 +1884,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Claude/Claude_OCD_Domain.mrs
     path: ./ruleset/Claude_Domain.mrs
   copilot_domain:
@@ -1879,7 +1892,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Copilot/Copilot_OCD_Domain.mrs
     path: ./ruleset/Copilot_Domain.mrs
   dingtalk_domain:
@@ -1887,7 +1900,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/DingTalk/DingTalk_OCD_Domain.mrs
     path: ./ruleset/DingTalk_Domain.mrs
   discord_domain:
@@ -1895,7 +1908,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Discord/Discord_OCD_Domain.mrs
     path: ./ruleset/Discord_Domain.mrs
   disney_domain:
@@ -1903,7 +1916,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Disney/Disney_OCD_Domain.mrs
     path: ./ruleset/Disney_Domain.mrs
   docker_domain:
@@ -1911,7 +1924,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Docker/Docker_OCD_Domain.mrs
     path: ./ruleset/Docker_Domain.mrs
   douban_domain:
@@ -1919,7 +1932,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/DouBan/DouBan_OCD_Domain.mrs
     path: ./ruleset/DouBan_Domain.mrs
   douyin_domain:
@@ -1927,7 +1940,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/DouYin/DouYin_OCD_Domain.mrs
     path: ./ruleset/DouYin_Domain.mrs
   ea_domain:
@@ -1935,7 +1948,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/EA/EA_OCD_Domain.mrs
     path: ./ruleset/EA_Domain.mrs
   emby_domain:
@@ -1943,7 +1956,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Emby/Emby_OCD_Domain.mrs
     path: ./ruleset/Emby_Domain.mrs
   epic_domain:
@@ -1951,7 +1964,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Epic/Epic_OCD_Domain.mrs
     path: ./ruleset/Epic_Domain.mrs
   fitnessplus_domain:
@@ -1959,7 +1972,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/FitnessPlus/FitnessPlus_OCD_Domain.mrs
     path: ./ruleset/FitnessPlus_Domain.mrs
   gaode_domain:
@@ -1967,7 +1980,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/GaoDe/GaoDe_OCD_Domain.mrs
     path: ./ruleset/GaoDe_Domain.mrs
   gemini_domain:
@@ -1975,7 +1988,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Gemini/Gemini_OCD_Domain.mrs
     path: ./ruleset/Gemini_Domain.mrs
   github_domain:
@@ -1983,7 +1996,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/GitHub/GitHub_OCD_Domain.mrs
     path: ./ruleset/GitHub_Domain.mrs
   globalmedia_domain:
@@ -1991,7 +2004,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/GlobalMedia/GlobalMedia_OCD_Domain.mrs
     path: ./ruleset/Media_Domain.mrs
   googledrive_domain:
@@ -1999,7 +2012,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/GoogleDrive/GoogleDrive_OCD_Domain.mrs
     path: ./ruleset/GoogleDrive_Domain.mrs
   googleearth_domain:
@@ -2007,7 +2020,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/GoogleEarth/GoogleEarth_OCD_Domain.mrs
     path: ./ruleset/GoogleEarth_Domain.mrs
   googlefcm_domain:
@@ -2015,7 +2028,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/GoogleFCM/GoogleFCM_OCD_Domain.mrs
     path: ./ruleset/GoogleFCM_Domain.mrs
   googlevoice_domain:
@@ -2023,7 +2036,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/GoogleVoice/GoogleVoice_OCD_Domain.mrs
     path: ./ruleset/GoogleVoice_Domain.mrs
   hbo_domain:
@@ -2031,7 +2044,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/HBO/HBO_OCD_Domain.mrs
     path: ./ruleset/HBO_Domain.mrs
   hulu_domain:
@@ -2039,7 +2052,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Hulu/Hulu_OCD_Domain.mrs
     path: ./ruleset/Hulu_Domain.mrs
   hulujp_domain:
@@ -2047,7 +2060,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/HuluJP/HuluJP_OCD_Domain.mrs
     path: ./ruleset/HuluJP_Domain.mrs
   huluusa_domain:
@@ -2055,7 +2068,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/HuluUSA/HuluUSA_OCD_Domain.mrs
     path: ./ruleset/HuluUSA_Domain.mrs
   hupu_domain:
@@ -2063,7 +2076,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Hupu/Hupu_OCD_Domain.mrs
     path: ./ruleset/Hupu_Domain.mrs
   icloud_domain:
@@ -2071,7 +2084,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/iCloud/iCloud_OCD_Domain.mrs
     path: ./ruleset/iCloud_Domain.mrs
   imdb_domain:
@@ -2079,7 +2092,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/IMDB/IMDB_OCD_Domain.mrs
     path: ./ruleset/IMDB_Domain.mrs
   instagram_domain:
@@ -2087,7 +2100,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Instagram/Instagram_OCD_Domain.mrs
     path: ./ruleset/Instagram_Domain.mrs
   intel_domain:
@@ -2095,7 +2108,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Intel/Intel_OCD_Domain.mrs
     path: ./ruleset/Intel_Domain.mrs
   iqiyi_domain:
@@ -2103,7 +2116,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/iQIYI/iQIYI_OCD_Domain.mrs
     path: ./ruleset/iQIYI_Domain.mrs
   jingdong_domain:
@@ -2111,7 +2124,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/JingDong/JingDong_OCD_Domain.mrs
     path: ./ruleset/JingDong_Domain.mrs
   lastfm_domain:
@@ -2119,7 +2132,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/LastFM/LastFM_OCD_Domain.mrs
     path: ./ruleset/LastFM_Domain.mrs
   line_domain:
@@ -2127,7 +2140,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Line/Line_OCD_Domain.mrs
     path: ./ruleset/Line_Domain.mrs
   meituan_domain:
@@ -2135,7 +2148,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/MeiTuan/MeiTuan_OCD_Domain.mrs
     path: ./ruleset/MeiTuan_Domain.mrs
   microsoft_domain:
@@ -2143,7 +2156,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Microsoft/Microsoft_OCD_Domain.mrs
     path: ./ruleset/Microsoft_Domain.mrs
   microsoftedge_domain:
@@ -2151,7 +2164,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/MicrosoftEdge/MicrosoftEdge_OCD_Domain.mrs
     path: ./ruleset/MicrosoftEdge_Domain.mrs
   netease_domain:
@@ -2159,7 +2172,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/NetEase/NetEase_OCD_Domain.mrs
     path: ./ruleset/NetEase_Domain.mrs
   neteasemusic_domain:
@@ -2167,7 +2180,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/NetEaseMusic/NetEaseMusic_OCD_Domain.mrs
     path: ./ruleset/NetEaseMusic_Domain.mrs
   nga_domain:
@@ -2175,7 +2188,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/NGA/NGA_OCD_Domain.mrs
     path: ./ruleset/NGA_Domain.mrs
   niconico_domain:
@@ -2183,7 +2196,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Niconico/Niconico_OCD_Domain.mrs
     path: ./ruleset/Niconico_Domain.mrs
   onedrive_domain:
@@ -2191,7 +2204,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/OneDrive/OneDrive_OCD_Domain.mrs
     path: ./ruleset/OneDrive_Domain.mrs
   openai_domain:
@@ -2199,7 +2212,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/OpenAI/OpenAI_OCD_Domain.mrs
     path: ./ruleset/OpenAI_Domain.mrs
   pandora_domain:
@@ -2207,7 +2220,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Pandora/Pandora_OCD_Domain.mrs
     path: ./ruleset/Pandora_Domain.mrs
   paypal_domain:
@@ -2215,7 +2228,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/PayPal/PayPal_OCD_Domain.mrs
     path: ./ruleset/PayPal_Domain.mrs
   pikpak_domain:
@@ -2223,7 +2236,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/PikPak/PikPak_OCD_Domain.mrs
     path: ./ruleset/PikPak_Domain.mrs
   pinduoduo_domain:
@@ -2231,7 +2244,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Pinduoduo/Pinduoduo_OCD_Domain.mrs
     path: ./ruleset/Pinduoduo_Domain.mrs
   pixiv_domain:
@@ -2239,7 +2252,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Pixiv/Pixiv_OCD_Domain.mrs
     path: ./ruleset/Pixiv_Domain.mrs
   playstation_domain:
@@ -2247,7 +2260,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/PlayStation/PlayStation_OCD_Domain.mrs
     path: ./ruleset/PlayStation_Domain.mrs
   qobuz_domain:
@@ -2255,7 +2268,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Qobuz/Qobuz_OCD_Domain.mrs
     path: ./ruleset/Qobuz_Domain.mrs
   reddit_domain:
@@ -2263,7 +2276,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Reddit/Reddit_OCD_Domain.mrs
     path: ./ruleset/Reddit_Domain.mrs
   rockstar_domain:
@@ -2271,7 +2284,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Rockstar/Rockstar_OCD_Domain.mrs
     path: ./ruleset/Rockstar_Domain.mrs
   scholar_domain:
@@ -2279,7 +2292,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Scholar/Scholar_OCD_Domain.mrs
     path: ./ruleset/Scholar_Domain.mrs
   sina_domain:
@@ -2287,7 +2300,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Sina/Sina_OCD_Domain.mrs
     path: ./ruleset/Sina_Domain.mrs
   siri_domain:
@@ -2295,7 +2308,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Siri/Siri_OCD_Domain.mrs
     path: ./ruleset/Siri_Domain.mrs
   smzdm_domain:
@@ -2303,7 +2316,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/SMZDM/SMZDM_OCD_Domain.mrs
     path: ./ruleset/SMZDM_Domain.mrs
   sony_domain:
@@ -2311,7 +2324,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Sony/Sony_OCD_Domain.mrs
     path: ./ruleset/Sony_Domain.mrs
   soundcloud_domain:
@@ -2319,7 +2332,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/SoundCloud/SoundCloud_OCD_Domain.mrs
     path: ./ruleset/SoundCloud_Domain.mrs
   speedtest_domain:
@@ -2327,7 +2340,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Speedtest/Speedtest_OCD_Domain.mrs
     path: ./ruleset/Speedtest_Domain.mrs
   spotify_domain:
@@ -2335,7 +2348,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Spotify/Spotify_OCD_Domain.mrs
     path: ./ruleset/Spotify_Domain.mrs
   steam_domain:
@@ -2343,7 +2356,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Steam/Steam_OCD_Domain.mrs
     path: ./ruleset/Steam_Domain.mrs
   steamcn_domain:
@@ -2351,7 +2364,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/SteamCN/SteamCN_OCD_Domain.mrs
     path: ./ruleset/SteamCN_Domain.mrs
   supercell_domain:
@@ -2359,7 +2372,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Supercell/Supercell_OCD_Domain.mrs
     path: ./ruleset/Supercell_Domain.mrs
   systemota_domain:
@@ -2367,7 +2380,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/SystemOTA/SystemOTA_OCD_Domain.mrs
     path: ./ruleset/SystemOTA_Domain.mrs
   teams_domain:
@@ -2375,7 +2388,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Teams/Teams_OCD_Domain.mrs
     path: ./ruleset/Teams_Domain.mrs
   tencent_domain:
@@ -2383,7 +2396,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Tencent/Tencent_OCD_Domain.mrs
     path: ./ruleset/Tencent_Domain.mrs
   tvb_domain:
@@ -2391,7 +2404,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/TVB/TVB_OCD_Domain.mrs
     path: ./ruleset/TVB_Domain.mrs
   twitch_domain:
@@ -2399,7 +2412,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Twitch/Twitch_OCD_Domain.mrs
     path: ./ruleset/Twitch_Domain.mrs
   wikipedia_domain:
@@ -2407,7 +2420,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Wikipedia/Wikipedia_OCD_Domain.mrs
     path: ./ruleset/Wikipedia_Domain.mrs
   youtube_domain:
@@ -2415,7 +2428,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/YouTube/YouTube_OCD_Domain.mrs
     path: ./ruleset/YouTube_Domain.mrs
   youtubemusic_domain:
@@ -2423,7 +2436,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/YouTubeMusic/YouTubeMusic_OCD_Domain.mrs
     path: ./ruleset/YouTubeMusic_Domain.mrs
   apple_firmware_domain:
@@ -2432,30 +2445,34 @@ rule-providers:
     behavior: domain
     format: mrs
     url: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/applefirmware.mrs
+    proxy: ♻️自动选择
   direct_domain:
     type: http
     interval: 86400
     behavior: domain
     format: mrs
     url: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/direct.mrs
+    proxy: ♻️自动选择
   iptv_domain:
     type: http
     interval: 86400
     behavior: domain
     format: mrs
     url: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/iptv.mrs
+    proxy: ♻️自动选择
   NetEaseMusic_domain:
     type: http
     interval: 86400
     behavior: domain
     format: mrs
     url: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/NetEaseMusic-domain.mrs
+    proxy: ♻️自动选择
   4gtv_domain:
     type: http
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/Kwisma/rules/main/rules/mihomo/4GTV/4GTV_Domain.mrs
     path: ./ruleset/4GTV_Domain.mrs
   ehgallery_domain:
@@ -2463,7 +2480,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/Kwisma/rules/main/rules/mihomo/EHGallery/EHGallery_Domain.mrs
     path: ./ruleset/EHGallery_Domain.mrs
   tiktok_domain:
@@ -2471,7 +2488,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/Kwisma/rules/main/rules/mihomo/TikTok/TikTok_Domain.mrs
     path: ./ruleset/TikTok_Domain.mrs
   tracker_domain:
@@ -2479,7 +2496,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/Kwisma/rules/main/rules/mihomo/Tracker/Tracker_Domain.mrs
     path: ./ruleset/Tracker_Domain.mrs
   wechat_domain:
@@ -2487,7 +2504,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/Kwisma/rules/main/rules/mihomo/WeChat/WeChat_Domain.mrs
     path: ./ruleset/WeChat_Domain.mrs
   cn_domain:
@@ -2495,7 +2512,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/Kwisma/clash-rules/release/direct.mrs
     path: ./ruleset/CN_Domain.mrs
   talkatone_domain:
@@ -2503,7 +2520,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/qljsyph/ruleset-icon/main/mihomo/domain/talkatone.mrs
     path: ./ruleset/Talkatone_Domain.mrs
   fakeip_filter_domain:
@@ -2511,7 +2528,7 @@ rule-providers:
     interval: 86400
     behavior: domain
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/DustinWin/ruleset_geodata/mihomo-ruleset/fakeip-filter.mrs
     path: ./ruleset/Fakeip_Filter_Domain.mrs
   cloudflare_ip:
@@ -2519,7 +2536,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cloudflare.mrs
     path: ./ruleset/Cloudflare_IP.mrs
   facebook_ip:
@@ -2527,7 +2544,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/facebook.mrs
     path: ./ruleset/Facebook_IP.mrs
   fastly_ip:
@@ -2535,7 +2552,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/fastly.mrs
     path: ./ruleset/Fastly_IP.mrs
   google_ip:
@@ -2543,7 +2560,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs
     path: ./ruleset/Google_IP.mrs
   netflix_ip:
@@ -2551,7 +2568,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs
     path: ./ruleset/Netflix_IP.mrs
   telegram_ip:
@@ -2559,7 +2576,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs
     path: ./ruleset/Telegram_IP.mrs
   tor_ip:
@@ -2567,7 +2584,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/tor.mrs
     path: ./ruleset/Tor_IP.mrs
   twitter_ip:
@@ -2575,7 +2592,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/twitter.mrs
     path: ./ruleset/Twitter_IP.mrs
   alibaba_ip:
@@ -2583,7 +2600,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Alibaba/Alibaba_OCD_IP.mrs
     path: ./ruleset/Alibaba_IP.mrs
   amazon_ip:
@@ -2591,7 +2608,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Amazon/Amazon_OCD_IP.mrs
     path: ./ruleset/Amazon_IP.mrs
   apple_ip:
@@ -2599,7 +2616,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Apple/Apple_OCD_IP.mrs
     path: ./ruleset/Apple_IP.mrs
   bilibili_ip:
@@ -2607,7 +2624,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/BiliBili/BiliBili_OCD_IP.mrs
     path: ./ruleset/BiliBili_IP.mrs
   blizzard_ip:
@@ -2615,7 +2632,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Blizzard/Blizzard_OCD_IP.mrs
     path: ./ruleset/Blizzard_IP.mrs
   bytedance_ip:
@@ -2623,7 +2640,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/ByteDance/ByteDance_OCD_IP.mrs
     path: ./ruleset/ByteDance_IP.mrs
   chinamedia_ip:
@@ -2631,7 +2648,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/ChinaMedia/ChinaMedia_OCD_IP.mrs
     path: ./ruleset/ChinaMedia_IP.mrs
   copilot_ip:
@@ -2639,7 +2656,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Copilot/Copilot_OCD_IP.mrs
     path: ./ruleset/Copilot_IP.mrs
   globalmedia_ip:
@@ -2647,7 +2664,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/GlobalMedia/GlobalMedia_OCD_IP.mrs
     path: ./ruleset/Media_IP.mrs
   googlefcm_ip:
@@ -2655,7 +2672,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/GoogleFCM/GoogleFCM_OCD_IP.mrs
     path: ./ruleset/GoogleFCM_IP.mrs
   iqiyi_ip:
@@ -2663,7 +2680,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/iQIYI/iQIYI_OCD_IP.mrs
     path: ./ruleset/iQIYI_IP.mrs
   line_ip:
@@ -2671,7 +2688,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Line/Line_OCD_IP.mrs
     path: ./ruleset/Line_IP.mrs
   netease_ip:
@@ -2679,7 +2696,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/NetEase/NetEase_OCD_IP.mrs
     path: ./ruleset/NetEase_IP.mrs
   neteasemusic_ip:
@@ -2687,7 +2704,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/NetEaseMusic/NetEaseMusic_OCD_IP.mrs
     path: ./ruleset/NetEaseMusic_IP.mrs
   openai_ip:
@@ -2695,7 +2712,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/OpenAI/OpenAI_OCD_IP.mrs
     path: ./ruleset/OpenAI_IP.mrs
   qobuz_ip:
@@ -2703,7 +2720,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Qobuz/Qobuz_OCD_IP.mrs
     path: ./ruleset/Qobuz_IP.mrs
   spotify_ip:
@@ -2711,7 +2728,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Spotify/Spotify_OCD_IP.mrs
     path: ./ruleset/Spotify_IP.mrs
   supercell_ip:
@@ -2719,7 +2736,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Supercell/Supercell_OCD_IP.mrs
     path: ./ruleset/Supercell_IP.mrs
   tencent_ip:
@@ -2727,7 +2744,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Tencent/Tencent_OCD_IP.mrs
     path: ./ruleset/Tencent_IP.mrs
   twitch_ip:
@@ -2735,7 +2752,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Twitch/Twitch_OCD_IP.mrs
     path: ./ruleset/Twitch_IP.mrs
   youtube_ip:
@@ -2743,7 +2760,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/YouTube/YouTube_OCD_IP.mrs
     path: ./ruleset/YouTube_IP.mrs
   ehgallery_ip:
@@ -2751,7 +2768,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/Kwisma/rules/main/rules/mihomo/EHGallery/EHGallery_IP.mrs
     path: ./ruleset/EHGallery_IP.mrs
   tracker_ip:
@@ -2759,7 +2776,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/Kwisma/rules/main/rules/mihomo/Tracker/Tracker_IP.mrs
     path: ./ruleset/Tracker_IP.mrs
   cn_ip:
@@ -2767,7 +2784,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/Kwisma/clash-rules/release/cncidr.mrs
     path: ./ruleset/CN_IP.mrs
   talkatone_ip:
@@ -2775,7 +2792,7 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     format: mrs
-    proxy: 🚀全球代理
+    proxy: ♻️自动选择
     url: https://raw.githubusercontent.com/qljsyph/ruleset-icon/main/mihomo/ipcidr/talkatone-ip.mrs
     path: ./ruleset/Talkatone_IP.mrs
 sub-rules:
