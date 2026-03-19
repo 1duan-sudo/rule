@@ -1,5 +1,5 @@
 proxy-providers:
- 订阅名称要删除:
+  IKUUU:
     type: http
     interval: 86400
     health-check:
@@ -8,9 +8,9 @@ proxy-providers:
       interval: 300
     filter: ^(?!.*(拒绝|直连|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|traffic))
     proxy: 🟢 直连
-    url: 订阅地址
+    url: https://3yy59.no-mad-world.club/link/u8K3e7jX6OY3ZFsF?clash=3&extend=1
     override:
-      additional-prefix: '机场名称'
+      additional-prefix: ''
       skip-cert-verify: true
       udp: true
 global-ua: clash.meta
@@ -150,6 +150,8 @@ proxy-groups:
   - DIRECT
 - name: 🟢手动选择
   type: select
+  tolerance: 1
+  strategy: consistent-hashing
   url: https://www.gstatic.com/generate_204
   interval: 300
   lazy: true
@@ -161,6 +163,21 @@ proxy-groups:
   hidden: true
   proxies:
   - DIRECT
+- name: 🚫拒绝连接
+  type: select
+  hidden: true
+  proxies:
+  - REJECT
+- name: 🚫静默拒绝
+  type: select
+  hidden: true
+  proxies:
+  - REJECT-DROP
+- name: ⚪绕过连接
+  type: select
+  hidden: true
+  proxies:
+  - PASS
 - name: 🎯直连策略
   type: select
   proxies:
@@ -1429,6 +1446,12 @@ rule-providers:
     behavior: domain
     format: mrs
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/steam%40cn.mrs
+  tencent!cn_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/tencent%40!cn.mrs
   xiaomi_domain:
     type: http
     interval: 86400
@@ -2803,6 +2826,19 @@ sub-rules:
   # - DOMAIN-KEYWORD,openai,🟢手动选择
   # - DOMAIN-SUFFIX,telegram.org,♻️自动选择
   # =========================
+  - RULE-SET,tencent!cn_domain,🚀全球代理
+  - DOMAIN-SUFFIX,riotgames.com,🚀全球代理
+  - DOMAIN-SUFFIX,pvp.net,🚀全球代理
+  - DOMAIN-SUFFIX,riotcdn.net,🚀全球代理
+  - DOMAIN-SUFFIX,riotstatic.com,🚀全球代理
+  - DOMAIN-SUFFIX,leagueoflegends.com,🚀全球代理
+  - DOMAIN-SUFFIX,playvalorant.com,🚀全球代理
+  - DOMAIN-SUFFIX,levelinfinite.com,🚀全球代理
+  - DOMAIN-SUFFIX,pass.levelinfinite.com,🚀全球代理
+  - DOMAIN-SUFFIX,tencentgames.com,🚀全球代理
+  - DOMAIN-SUFFIX,timistudios.com,🚀全球代理
+  - DOMAIN-SUFFIX,lightspeed-studios.com,🚀全球代理
+  - DOMAIN-SUFFIX,proximabeta.com,🚀全球代理
   - DOMAIN-SUFFIX,hgamefree.info,🚀全球代理
   - RULE-SET,appstore_domain,AppStore
   - RULE-SET,applemail_domain,Apple邮箱
