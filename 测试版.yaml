@@ -1,5 +1,5 @@
 proxy-providers:
-  IKUUU:
+  此处删除填写订阅名称:
     type: http
     interval: 86400
     health-check:
@@ -8,9 +8,9 @@ proxy-providers:
       interval: 300
     filter: ^(?!.*(拒绝|直连|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|traffic))
     proxy: 🟢 直连
-    url: https://3yy59.no-mad-world.club/link/u8K3e7jX6OY3ZFsF?clash=3&extend=1
+    url: 填写订阅地址
     override:
-      additional-prefix: ''
+      additional-prefix: '填写机场名称'
       skip-cert-verify: true
       udp: true
 global-ua: clash.meta
