@@ -1,0 +1,2994 @@
+proxy-providers:
+  此处删除填写订阅名称:
+    type: http
+    interval: 86400
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+    filter: ^(?!.*(拒绝|直连|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|traffic))
+    proxy: 🟢 直连
+    url: 此处填写机场订阅
+    override:
+      additional-prefix: '填写机场名称'
+      skip-cert-verify: true
+      udp: true
+global-ua: clash.meta
+mixed-port: 7890
+ipv6: true
+allow-lan: true
+unified-delay: true
+tcp-concurrent: true
+skip-auth-prefixes:
+- 127.0.0.1/8
+- ::1/128
+geodata-mode: false
+geodata-loader: standard
+geo-auto-update: true
+geo-update-interval: 48
+geox-url:
+  geosite: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat
+  mmdb: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.metadb
+  geoip: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat
+  asn: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb
+external-controller: 127.0.0.1:9090
+secret: ''
+external-ui: ui
+external-ui-url: https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip
+find-process-mode: 'off'
+keep-alive-idle: 600
+keep-alive-interval: 30
+profile:
+  store-selected: true
+  store-fake-ip: true
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: true
+  sniff:
+    HTTP:
+      ports:
+      - 80
+      - 8080-8880
+      override-destination: true
+    TLS:
+      ports:
+      - 443
+      - 8443
+    QUIC:
+      ports:
+      - 443
+      - 8443
+  force-domain:
+  - +.v2ex.com
+  skip-domain:
+  - Mijia Cloud
+  - dlg.io.mi.com
+  - +.push.apple.com
+  - +.apple.com
+  - +.wechat.com
+  - +.qpic.cn
+  - +.qq.com
+  - +.wechatapp.com
+  - +.vivox.com
+  - +.oray.com
+  - +.sunlogin.net
+tun:
+  enable: true
+  stack: gvisor
+  mtu: 9000
+  dns-hijack:
+  - any:53
+  - tcp://any:53
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+dns:
+  enable: true
+  listen: 0.0.0.0:1053
+  ipv6: true
+  prefer-h3: false
+  respect-rules: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 28.0.0.1/8
+  fake-ip-range6: fdfe:dcba:9876::1/64
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+  - rule-set:fakeip_filter_domain
+  - rule-set:game_cn_domain
+  - rule-set:bank_cn_domain
+  - rule-set:wechat_domain
+  - rule-set:ai_cn_domain
+  - rule-set:NetEaseMusic_domain
+  - rule-set:fcm_domain
+  - rule-set:alibaba_domain
+  - rule-set:media_cn_domain
+  - rule-set:xiaomi_domain
+  - rule-set:steam_cn_domain
+  - rule-set:pt_cn_domain
+  - rule-set:public-tracker_domain
+  - rule-set:115_domain
+  - rule-set:aliyun_domain
+  - rule-set:direct_domain
+  - rule-set:apple_cn_domain
+  - rule-set:apple_firmware_domain
+  - rule-set:iptv_domain
+  - rule-set:private_domain
+  - rule-set:cn_domain
+  default-nameserver:
+  - 119.29.29.29
+  - 180.184.1.1
+  proxy-server-nameserver:
+  - https://doh.pub/dns-query
+  - https://223.5.5.5/dns-query#h3=true
+  direct-nameserver:
+  - https://doh.pub/dns-query
+  - https://223.5.5.5/dns-query#h3=true
+  nameserver:
+  - https://doh.pub/dns-query
+  - https://223.5.5.5/dns-query#h3=true
+proxies:
+- name: 🟢 直连
+  type: direct
+  udp: true
+proxy-groups:
+- name: 🚀全球代理
+  type: select
+  proxies:
+  - 🟢手动选择
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  - 🎯强制直连
+- name: GLOBAL
+  type: select
+  proxies:
+  - 🚀全球代理
+  - 🟢手动选择
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  - 🎯强制直连
+  - DIRECT
+- name: 🟢手动选择
+  type: select
+  tolerance: 1
+  strategy: consistent-hashing
+  url: https://www.gstatic.com/generate_204
+  interval: 300
+  lazy: true
+  timeout: 5000
+  max-failed-times: 5
+  include-all: true
+- name: 🎯强制直连
+  type: select
+  hidden: true
+  proxies:
+  - DIRECT
+- name: 🚫拒绝连接
+  type: select
+  hidden: true
+  proxies:
+  - REJECT
+- name: 🚫静默拒绝
+  type: select
+  hidden: true
+  proxies:
+  - REJECT-DROP
+- name: ⚪绕过连接
+  type: select
+  hidden: true
+  proxies:
+  - PASS
+- name: 🎯直连策略
+  type: select
+  proxies:
+  - 🎯强制直连
+  - 🚀全球代理
+  - 🟢手动选择
+  - ♻️自动选择
+- name: ♻️自动选择
+  type: url-test
+  tolerance: 1
+  strategy: consistent-hashing
+  url: https://www.gstatic.com/generate_204
+  interval: 300
+  lazy: true
+  timeout: 5000
+  max-failed-times: 5
+  include-all: true
+- name: ⚡️均衡负载
+  type: load-balance
+  tolerance: 1
+  strategy: round-robin
+  url: https://www.gstatic.com/generate_204
+  interval: 300
+  lazy: true
+  timeout: 5000
+  max-failed-times: 5
+  include-all: true
+- name: 🔯故障转移
+  type: fallback
+  tolerance: 1
+  strategy: consistent-hashing
+  url: https://www.gstatic.com/generate_204
+  interval: 300
+  lazy: true
+  timeout: 5000
+  max-failed-times: 5
+  include-all: true
+- name: '115'
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/115.webp
+- name: '12306'
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/12306.webp
+- name: '4399'
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/4399.webp
+- name: 4GTV
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/4GTV.webp
+- name: 58同城
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/58TongCheng.webp
+- name: 农业银行
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/ABC.webp
+- name: AbemaTV
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Abema.webp
+- name: Adobe
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Adobe.webp
+- name: 支付宝
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/AliPay.webp
+- name: 阿里巴巴
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Alibaba.webp
+- name: 亚马逊电商
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/AmazonShopping.webp
+- name: 亚马逊TV
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/AmazonPrimeVideo.webp
+- name: Apple
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Apple.webp
+- name: AppleCN
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/AppleCN.webp
+- name: AppStore
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/AppStore.webp
+- name: Apple邮箱
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/AppleMail.webp
+- name: Apple音乐
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/AppleMusic.webp
+- name: Apple新闻
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/AppleNews.webp
+- name: Apple日报
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/AppleDaily.webp
+- name: AppleTV
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/AppleTV.webp
+- name: 巴哈姆特
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Bahamut.webp
+- name: 百度贴吧
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/BaiDuTieBa.webp
+- name: 百度
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Baidu.webp
+- name: 哔哩哔哩
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/BiliBili.webp
+- name: 哔哩东南亚
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Biliintl.webp
+- name: BT追踪器
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/BitTorrent.webp
+- name: 暴雪
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Blizzard.webp
+- name: 字节跳动
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/ByteDance.webp
+- name: Beats
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Beats.webp
+- name: CCTV
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/CCTV.webp
+- name: 中国媒体
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/ChinaTV.webp
+- name: Cloudflare
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Cloudflare.webp
+- name: 钉钉
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/DingTalk.webp
+- name: Discord
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Discord.webp
+- name: Disney
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Disney+.webp
+- name: Docker
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Docker.webp
+- name: 豆瓣
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/DouBan.webp
+- name: E站
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/E-Hentai.webp
+- name: EA
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/EA.webp
+- name: Epic
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Epic.webp
+- name: Emby
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Emby.webp
+- name: FCM
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/FCM.webp
+- name: Facebook
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Facebook.webp
+- name: Fastly
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Fastly.webp
+- name: FitnessPlus
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/FitnessPlus.webp
+- name: 高德
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/GaoDe.webp
+- name: GitHub
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/GitHub.webp
+- name: Google
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Google.webp
+- name: Google云盘
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/GoogleDrive.webp
+- name: Google地图
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/GoogleEarth.webp
+- name: GoogleVoice
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/GoogleVoice.webp
+- name: Hoyoverse
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/HoYoverse.webp
+- name: Hulu
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Hulu.webp
+- name: 虎扑
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Hupu.webp
+- name: HBO
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/HBO.webp
+- name: IMDB
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/IMDB.webp
+- name: 爱奇艺
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/IQIYI.webp
+- name: Instagram
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Instagram.webp
+- name: 因特尔
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Intel.webp
+- name: iCloud
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/iCloud.webp
+- name: 京东
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/JingDong.webp
+- name: 酷狗
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Kugou.webp
+- name: 酷我
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Kuwo.webp
+- name: LastFM
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/LastFM.webp
+- name: LINE
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Line.webp
+- name: 美团
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/MeiTuan.webp
+- name: 微软
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Microsoft.webp
+- name: Mihoyo
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/mihoyo.webp
+- name: NGA
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/NGA.webp
+- name: 网易
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/NetEase.webp
+- name: 网易云音乐
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/NetEase_Music.webp
+- name: Netflix
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Netflix.webp
+- name: ニコニコ
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Niconico.webp
+- name: OpenAI
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/OpenAI.webp
+- name: 微软云盘
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/OneDrive.webp
+- name: 潘朵拉珠宝
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Pandora.webp
+- name: PayPal
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/PayPal.webp
+- name: PikPak
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/PikPak.webp
+- name: 拼多多
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Pinduoduo.webp
+- name: Pixiv
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Pixiv.webp
+- name: PlayStation
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/PlayStation.webp
+- name: 国际媒体
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/ProxyTV.webp
+- name: Qobuz
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Qobuz.webp
+- name: Reddit
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Reddit.webp
+- name: Rockstar
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Rockstar.webp
+- name: 什么值得买
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/SMZDM.webp
+- name: Google学术
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Scholar.webp
+- name: 新浪
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Sina.webp
+- name: 索尼
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Sony.webp
+- name: SoundCloud
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/SoundCloud.webp
+- name: Speedtest
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Speedtest.webp
+- name: Spotify
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Spotify.webp
+- name: Steam
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Steam.webp
+- name: Steam中国
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Steam.webp
+- name: Supercell
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Supercell.webp
+- name: Signal
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Signal.webp
+- name: TVB
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/TVB.webp
+- name: Telegram
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Telegram.webp
+- name: 腾讯
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Tencent.webp
+- name: 抖音
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/TikTok.webp
+- name: TikTok
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/TikTok.webp
+- name: Twitch
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Twitch.webp
+- name: Twitter
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Twitter.webp
+- name: Tor
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Tor.webp
+- name: Talkatone
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Talkatone.webp
+- name: 微信
+  type: select
+  include-all: true
+  proxies:
+  - 🎯直连策略
+  - 🚀全球代理
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/WeChat.webp
+- name: 维基百科
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Wikipedia.webp
+- name: Wise
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Wise.webp
+- name: YouTube
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/YouTube.webp
+- name: YouTubeMusic
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/YouTubeMusic.webp
+- name: 禁漫天堂
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/18comic.webp
+- name: 哔咔哔咔
+  type: select
+  include-all: true
+  proxies:
+  - 🚀全球代理
+  - 🎯直连策略
+  - ♻️自动选择
+  - ⚡️均衡负载
+  - 🔯故障转移
+  icon: https://raw.githubusercontent.com/Kwisma/rules/main/icon/webp/100/Picacg.webp
+rules:
+- SUB-RULE,(OR,((NETWORK,UDP),(NETWORK,TCP))),SUB-RULES
+- MATCH,🚀全球代理
+rule-anchor:
+  ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+  ip_text:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: text
+  ip_yaml:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: yaml
+  domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+  domain_text:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: text
+  domain_yaml:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: yaml
+  class:
+    type: http
+    interval: 86400
+    behavior: classical
+    format: text
+  class_yaml:
+    type: http
+    interval: 86400
+    behavior: classical
+    format: yaml
+rule-providers:
+  ai_cn_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-cn.mrs
+    proxy: ♻️自动选择
+  aliyun_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/aliyun.mrs
+    proxy: ♻️自动选择
+  apple_cn_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/apple%40cn.mrs
+    proxy: ♻️自动选择
+  bank_cn_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-bank-cn.mrs
+    proxy: ♻️自动选择
+  fcm_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/googlefcm.mrs
+    proxy: ♻️自动选择
+  game_cn_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-games%40cn.mrs
+    proxy: ♻️自动选择
+  media_cn_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-media-cn.mrs
+    proxy: ♻️自动选择
+  private_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs
+    proxy: ♻️自动选择
+  pt_cn_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-pt.mrs
+    proxy: ♻️自动选择
+  public-tracker_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-public-tracker.mrs
+    proxy: ♻️自动选择
+  steam_cn_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/steam%40cn.mrs
+    proxy: ♻️自动选择
+  tencent!cn_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/tencent%40!cn.mrs
+    proxy: ♻️自动选择
+  xiaomi_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/xiaomi.mrs
+    proxy: ♻️自动选择
+  18comic_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/18comic.mrs
+    path: ./ruleset/18comic_Domain.mrs
+  biliintl_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/biliintl.mrs
+    path: ./ruleset/biliintl_Domain.mrs
+  cloudflare_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cloudflare.mrs
+    path: ./ruleset/Cloudflare_Domain.mrs
+  facebook_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/facebook.mrs
+    path: ./ruleset/Facebook_Domain.mrs
+  fastly_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/fastly.mrs
+    path: ./ruleset/Fastly_Domain.mrs
+  google_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs
+    path: ./ruleset/Google_Domain.mrs
+  hoyoverse_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/hoyoverse.mrs
+    path: ./ruleset/Hoyoverse_Domain.mrs
+  kugou_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/kugou.mrs
+    path: ./ruleset/Kugou_Domain.mrs
+  kuwo_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/kuwo.mrs
+    path: ./ruleset/Kuwo_Domain.mrs
+  mihoyo_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/mihoyo.mrs
+    path: ./ruleset/Mihoyo_Domain.mrs
+  netflix_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs
+    path: ./ruleset/Netflix_Domain.mrs
+  picacg_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/picacg.mrs
+    path: ./ruleset/Picacg_Domain.mrs
+  signal_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/signal.mrs
+    path: ./ruleset/Signal_Domain.mrs
+  telegram_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs
+    path: ./ruleset/Telegram_Domain.mrs
+  tor_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tor.mrs
+    path: ./ruleset/Tor_Domain.mrs
+  twitter_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/twitter.mrs
+    path: ./ruleset/Twitter_Domain.mrs
+  wise_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/wise.mrs
+    path: ./ruleset/Wise_Domain.mrs
+  115_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/115/115_OCD_Domain.mrs
+    path: ./ruleset/115_Domain.mrs
+  12306_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/12306/12306_OCD_Domain.mrs
+    path: ./ruleset/12306_Domain.mrs
+  4399_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/4399/4399_OCD_Domain.mrs
+    path: ./ruleset/4399_Domain.mrs
+  58tongcheng_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/58TongCheng/58TongCheng_OCD_Domain.mrs
+    path: ./ruleset/58TongCheng_Domain.mrs
+  abc_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/ABC/ABC_OCD_Domain.mrs
+    path: ./ruleset/ABC_Domain.mrs
+  abematv_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AbemaTV/AbemaTV_OCD_Domain.mrs
+    path: ./ruleset/AbemaTV_Domain.mrs
+  adobe_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Adobe/Adobe_OCD_Domain.mrs
+    path: ./ruleset/Adobe_Domain.mrs
+  alibaba_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Alibaba/Alibaba_OCD_Domain.mrs
+    path: ./ruleset/Alibaba_Domain.mrs
+  alipay_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AliPay/AliPay_OCD_Domain.mrs
+    path: ./ruleset/AliPay_Domain.mrs
+  amazon_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Amazon/Amazon_OCD_Domain.mrs
+    path: ./ruleset/Amazon_Domain.mrs
+  amazonprimevideo_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AmazonPrimeVideo/AmazonPrimeVideo_OCD_Domain.mrs
+    path: ./ruleset/AmazonPrimeVideo_Domain.mrs
+  apple_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Apple/Apple_OCD_Domain.mrs
+    path: ./ruleset/Apple_Domain.mrs
+  appledaily_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AppleDaily/AppleDaily_OCD_Domain.mrs
+    path: ./ruleset/AppleDaily_Domain.mrs
+  appledev_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AppleDev/AppleDev_OCD_Domain.mrs
+    path: ./ruleset/AppleDev_Domain.mrs
+  applefirmware_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AppleFirmware/AppleFirmware_OCD_Domain.mrs
+    path: ./ruleset/AppleFirmware_Domain.mrs
+  applehardware_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AppleHardware/AppleHardware_OCD_Domain.mrs
+    path: ./ruleset/AppleHardware_Domain.mrs
+  appleid_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AppleID/AppleID_OCD_Domain.mrs
+    path: ./ruleset/AppleID_Domain.mrs
+  applemail_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AppleMail/AppleMail_OCD_Domain.mrs
+    path: ./ruleset/AppleMail_Domain.mrs
+  applemedia_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AppleMedia/AppleMedia_OCD_Domain.mrs
+    path: ./ruleset/AppleMedia_Domain.mrs
+  applemusic_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AppleMusic/AppleMusic_OCD_Domain.mrs
+    path: ./ruleset/AppleMusic_Domain.mrs
+  applenews_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AppleNews/AppleNews_OCD_Domain.mrs
+    path: ./ruleset/AppleNews_Domain.mrs
+  appleproxy_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AppleProxy/AppleProxy_OCD_Domain.mrs
+    path: ./ruleset/AppleProxy_Domain.mrs
+  appletv_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AppleTV/AppleTV_OCD_Domain.mrs
+    path: ./ruleset/AppleTV_Domain.mrs
+  appstore_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/AppStore/AppStore_OCD_Domain.mrs
+    path: ./ruleset/AppStore_Domain.mrs
+  bahamut_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Bahamut/Bahamut_OCD_Domain.mrs
+    path: ./ruleset/Bahamut_Domain.mrs
+  baidu_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Baidu/Baidu_OCD_Domain.mrs
+    path: ./ruleset/Baidu_Domain.mrs
+  baidutieba_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/BaiDuTieBa/BaiDuTieBa_OCD_Domain.mrs
+    path: ./ruleset/BaiDuTieBa_Domain.mrs
+  beats_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Beats/Beats_OCD_Domain.mrs
+    path: ./ruleset/Beats_Domain.mrs
+  bilibili_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/BiliBili/BiliBili_OCD_Domain.mrs
+    path: ./ruleset/BiliBili_Domain.mrs
+  bing_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Bing/Bing_OCD_Domain.mrs
+    path: ./ruleset/Bing_Domain.mrs
+  blizzard_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Blizzard/Blizzard_OCD_Domain.mrs
+    path: ./ruleset/Blizzard_Domain.mrs
+  bytedance_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/ByteDance/ByteDance_OCD_Domain.mrs
+    path: ./ruleset/ByteDance_Domain.mrs
+  cctv_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/CCTV/CCTV_OCD_Domain.mrs
+    path: ./ruleset/CCTV_Domain.mrs
+  chinamedia_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/ChinaMedia/ChinaMedia_OCD_Domain.mrs
+    path: ./ruleset/ChinaMedia_Domain.mrs
+  claude_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Claude/Claude_OCD_Domain.mrs
+    path: ./ruleset/Claude_Domain.mrs
+  copilot_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Copilot/Copilot_OCD_Domain.mrs
+    path: ./ruleset/Copilot_Domain.mrs
+  dingtalk_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/DingTalk/DingTalk_OCD_Domain.mrs
+    path: ./ruleset/DingTalk_Domain.mrs
+  discord_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Discord/Discord_OCD_Domain.mrs
+    path: ./ruleset/Discord_Domain.mrs
+  disney_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Disney/Disney_OCD_Domain.mrs
+    path: ./ruleset/Disney_Domain.mrs
+  docker_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Docker/Docker_OCD_Domain.mrs
+    path: ./ruleset/Docker_Domain.mrs
+  douban_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/DouBan/DouBan_OCD_Domain.mrs
+    path: ./ruleset/DouBan_Domain.mrs
+  douyin_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/DouYin/DouYin_OCD_Domain.mrs
+    path: ./ruleset/DouYin_Domain.mrs
+  ea_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/EA/EA_OCD_Domain.mrs
+    path: ./ruleset/EA_Domain.mrs
+  emby_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Emby/Emby_OCD_Domain.mrs
+    path: ./ruleset/Emby_Domain.mrs
+  epic_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Epic/Epic_OCD_Domain.mrs
+    path: ./ruleset/Epic_Domain.mrs
+  fitnessplus_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/FitnessPlus/FitnessPlus_OCD_Domain.mrs
+    path: ./ruleset/FitnessPlus_Domain.mrs
+  gaode_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/GaoDe/GaoDe_OCD_Domain.mrs
+    path: ./ruleset/GaoDe_Domain.mrs
+  gemini_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Gemini/Gemini_OCD_Domain.mrs
+    path: ./ruleset/Gemini_Domain.mrs
+  github_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/GitHub/GitHub_OCD_Domain.mrs
+    path: ./ruleset/GitHub_Domain.mrs
+  globalmedia_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/GlobalMedia/GlobalMedia_OCD_Domain.mrs
+    path: ./ruleset/Media_Domain.mrs
+  googledrive_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/GoogleDrive/GoogleDrive_OCD_Domain.mrs
+    path: ./ruleset/GoogleDrive_Domain.mrs
+  googleearth_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/GoogleEarth/GoogleEarth_OCD_Domain.mrs
+    path: ./ruleset/GoogleEarth_Domain.mrs
+  googlefcm_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/GoogleFCM/GoogleFCM_OCD_Domain.mrs
+    path: ./ruleset/GoogleFCM_Domain.mrs
+  googlevoice_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/GoogleVoice/GoogleVoice_OCD_Domain.mrs
+    path: ./ruleset/GoogleVoice_Domain.mrs
+  hbo_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/HBO/HBO_OCD_Domain.mrs
+    path: ./ruleset/HBO_Domain.mrs
+  hulu_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Hulu/Hulu_OCD_Domain.mrs
+    path: ./ruleset/Hulu_Domain.mrs
+  hulujp_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/HuluJP/HuluJP_OCD_Domain.mrs
+    path: ./ruleset/HuluJP_Domain.mrs
+  huluusa_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/HuluUSA/HuluUSA_OCD_Domain.mrs
+    path: ./ruleset/HuluUSA_Domain.mrs
+  hupu_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Hupu/Hupu_OCD_Domain.mrs
+    path: ./ruleset/Hupu_Domain.mrs
+  icloud_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/iCloud/iCloud_OCD_Domain.mrs
+    path: ./ruleset/iCloud_Domain.mrs
+  imdb_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/IMDB/IMDB_OCD_Domain.mrs
+    path: ./ruleset/IMDB_Domain.mrs
+  instagram_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Instagram/Instagram_OCD_Domain.mrs
+    path: ./ruleset/Instagram_Domain.mrs
+  intel_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Intel/Intel_OCD_Domain.mrs
+    path: ./ruleset/Intel_Domain.mrs
+  iqiyi_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/iQIYI/iQIYI_OCD_Domain.mrs
+    path: ./ruleset/iQIYI_Domain.mrs
+  jingdong_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/JingDong/JingDong_OCD_Domain.mrs
+    path: ./ruleset/JingDong_Domain.mrs
+  lastfm_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/LastFM/LastFM_OCD_Domain.mrs
+    path: ./ruleset/LastFM_Domain.mrs
+  line_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Line/Line_OCD_Domain.mrs
+    path: ./ruleset/Line_Domain.mrs
+  meituan_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/MeiTuan/MeiTuan_OCD_Domain.mrs
+    path: ./ruleset/MeiTuan_Domain.mrs
+  microsoft_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Microsoft/Microsoft_OCD_Domain.mrs
+    path: ./ruleset/Microsoft_Domain.mrs
+  microsoftedge_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/MicrosoftEdge/MicrosoftEdge_OCD_Domain.mrs
+    path: ./ruleset/MicrosoftEdge_Domain.mrs
+  netease_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/NetEase/NetEase_OCD_Domain.mrs
+    path: ./ruleset/NetEase_Domain.mrs
+  neteasemusic_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/NetEaseMusic/NetEaseMusic_OCD_Domain.mrs
+    path: ./ruleset/NetEaseMusic_Domain.mrs
+  nga_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/NGA/NGA_OCD_Domain.mrs
+    path: ./ruleset/NGA_Domain.mrs
+  niconico_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Niconico/Niconico_OCD_Domain.mrs
+    path: ./ruleset/Niconico_Domain.mrs
+  onedrive_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/OneDrive/OneDrive_OCD_Domain.mrs
+    path: ./ruleset/OneDrive_Domain.mrs
+  openai_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/OpenAI/OpenAI_OCD_Domain.mrs
+    path: ./ruleset/OpenAI_Domain.mrs
+  pandora_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Pandora/Pandora_OCD_Domain.mrs
+    path: ./ruleset/Pandora_Domain.mrs
+  paypal_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/PayPal/PayPal_OCD_Domain.mrs
+    path: ./ruleset/PayPal_Domain.mrs
+  pikpak_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/PikPak/PikPak_OCD_Domain.mrs
+    path: ./ruleset/PikPak_Domain.mrs
+  pinduoduo_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Pinduoduo/Pinduoduo_OCD_Domain.mrs
+    path: ./ruleset/Pinduoduo_Domain.mrs
+  pixiv_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Pixiv/Pixiv_OCD_Domain.mrs
+    path: ./ruleset/Pixiv_Domain.mrs
+  playstation_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/PlayStation/PlayStation_OCD_Domain.mrs
+    path: ./ruleset/PlayStation_Domain.mrs
+  qobuz_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Qobuz/Qobuz_OCD_Domain.mrs
+    path: ./ruleset/Qobuz_Domain.mrs
+  reddit_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Reddit/Reddit_OCD_Domain.mrs
+    path: ./ruleset/Reddit_Domain.mrs
+  rockstar_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Rockstar/Rockstar_OCD_Domain.mrs
+    path: ./ruleset/Rockstar_Domain.mrs
+  scholar_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Scholar/Scholar_OCD_Domain.mrs
+    path: ./ruleset/Scholar_Domain.mrs
+  sina_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Sina/Sina_OCD_Domain.mrs
+    path: ./ruleset/Sina_Domain.mrs
+  siri_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Siri/Siri_OCD_Domain.mrs
+    path: ./ruleset/Siri_Domain.mrs
+  smzdm_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/SMZDM/SMZDM_OCD_Domain.mrs
+    path: ./ruleset/SMZDM_Domain.mrs
+  sony_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Sony/Sony_OCD_Domain.mrs
+    path: ./ruleset/Sony_Domain.mrs
+  soundcloud_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/SoundCloud/SoundCloud_OCD_Domain.mrs
+    path: ./ruleset/SoundCloud_Domain.mrs
+  speedtest_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Speedtest/Speedtest_OCD_Domain.mrs
+    path: ./ruleset/Speedtest_Domain.mrs
+  spotify_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Spotify/Spotify_OCD_Domain.mrs
+    path: ./ruleset/Spotify_Domain.mrs
+  steam_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Steam/Steam_OCD_Domain.mrs
+    path: ./ruleset/Steam_Domain.mrs
+  steamcn_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/SteamCN/SteamCN_OCD_Domain.mrs
+    path: ./ruleset/SteamCN_Domain.mrs
+  supercell_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Supercell/Supercell_OCD_Domain.mrs
+    path: ./ruleset/Supercell_Domain.mrs
+  systemota_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/SystemOTA/SystemOTA_OCD_Domain.mrs
+    path: ./ruleset/SystemOTA_Domain.mrs
+  teams_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Teams/Teams_OCD_Domain.mrs
+    path: ./ruleset/Teams_Domain.mrs
+  tencent_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Tencent/Tencent_OCD_Domain.mrs
+    path: ./ruleset/Tencent_Domain.mrs
+  tvb_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/TVB/TVB_OCD_Domain.mrs
+    path: ./ruleset/TVB_Domain.mrs
+  twitch_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Twitch/Twitch_OCD_Domain.mrs
+    path: ./ruleset/Twitch_Domain.mrs
+  wikipedia_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Wikipedia/Wikipedia_OCD_Domain.mrs
+    path: ./ruleset/Wikipedia_Domain.mrs
+  youtube_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/YouTube/YouTube_OCD_Domain.mrs
+    path: ./ruleset/YouTube_Domain.mrs
+  youtubemusic_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/YouTubeMusic/YouTubeMusic_OCD_Domain.mrs
+    path: ./ruleset/YouTubeMusic_Domain.mrs
+  apple_firmware_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/applefirmware.mrs
+    proxy: ♻️自动选择
+  direct_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/direct.mrs
+    proxy: ♻️自动选择
+  iptv_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/iptv.mrs
+    proxy: ♻️自动选择
+  NetEaseMusic_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/NetEaseMusic-domain.mrs
+    proxy: ♻️自动选择
+  4gtv_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/Kwisma/rules/main/rules/mihomo/4GTV/4GTV_Domain.mrs
+    path: ./ruleset/4GTV_Domain.mrs
+  ehgallery_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/Kwisma/rules/main/rules/mihomo/EHGallery/EHGallery_Domain.mrs
+    path: ./ruleset/EHGallery_Domain.mrs
+  tiktok_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/Kwisma/rules/main/rules/mihomo/TikTok/TikTok_Domain.mrs
+    path: ./ruleset/TikTok_Domain.mrs
+  tracker_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/Kwisma/rules/main/rules/mihomo/Tracker/Tracker_Domain.mrs
+    path: ./ruleset/Tracker_Domain.mrs
+  wechat_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/Kwisma/rules/main/rules/mihomo/WeChat/WeChat_Domain.mrs
+    path: ./ruleset/WeChat_Domain.mrs
+  cn_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/Kwisma/clash-rules/release/direct.mrs
+    path: ./ruleset/CN_Domain.mrs
+  talkatone_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/qljsyph/ruleset-icon/main/mihomo/domain/talkatone.mrs
+    path: ./ruleset/Talkatone_Domain.mrs
+  fakeip_filter_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/DustinWin/ruleset_geodata/mihomo-ruleset/fakeip-filter.mrs
+    path: ./ruleset/Fakeip_Filter_Domain.mrs
+  cloudflare_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cloudflare.mrs
+    path: ./ruleset/Cloudflare_IP.mrs
+  facebook_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/facebook.mrs
+    path: ./ruleset/Facebook_IP.mrs
+  fastly_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/fastly.mrs
+    path: ./ruleset/Fastly_IP.mrs
+  google_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs
+    path: ./ruleset/Google_IP.mrs
+  netflix_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs
+    path: ./ruleset/Netflix_IP.mrs
+  telegram_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs
+    path: ./ruleset/Telegram_IP.mrs
+  tor_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/tor.mrs
+    path: ./ruleset/Tor_IP.mrs
+  twitter_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/twitter.mrs
+    path: ./ruleset/Twitter_IP.mrs
+  alibaba_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Alibaba/Alibaba_OCD_IP.mrs
+    path: ./ruleset/Alibaba_IP.mrs
+  amazon_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Amazon/Amazon_OCD_IP.mrs
+    path: ./ruleset/Amazon_IP.mrs
+  apple_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Apple/Apple_OCD_IP.mrs
+    path: ./ruleset/Apple_IP.mrs
+  bilibili_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/BiliBili/BiliBili_OCD_IP.mrs
+    path: ./ruleset/BiliBili_IP.mrs
+  blizzard_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Blizzard/Blizzard_OCD_IP.mrs
+    path: ./ruleset/Blizzard_IP.mrs
+  bytedance_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/ByteDance/ByteDance_OCD_IP.mrs
+    path: ./ruleset/ByteDance_IP.mrs
+  chinamedia_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/ChinaMedia/ChinaMedia_OCD_IP.mrs
+    path: ./ruleset/ChinaMedia_IP.mrs
+  copilot_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Copilot/Copilot_OCD_IP.mrs
+    path: ./ruleset/Copilot_IP.mrs
+  globalmedia_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/GlobalMedia/GlobalMedia_OCD_IP.mrs
+    path: ./ruleset/Media_IP.mrs
+  googlefcm_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/GoogleFCM/GoogleFCM_OCD_IP.mrs
+    path: ./ruleset/GoogleFCM_IP.mrs
+  iqiyi_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/iQIYI/iQIYI_OCD_IP.mrs
+    path: ./ruleset/iQIYI_IP.mrs
+  line_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Line/Line_OCD_IP.mrs
+    path: ./ruleset/Line_IP.mrs
+  netease_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/NetEase/NetEase_OCD_IP.mrs
+    path: ./ruleset/NetEase_IP.mrs
+  neteasemusic_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/NetEaseMusic/NetEaseMusic_OCD_IP.mrs
+    path: ./ruleset/NetEaseMusic_IP.mrs
+  openai_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/OpenAI/OpenAI_OCD_IP.mrs
+    path: ./ruleset/OpenAI_IP.mrs
+  qobuz_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Qobuz/Qobuz_OCD_IP.mrs
+    path: ./ruleset/Qobuz_IP.mrs
+  spotify_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Spotify/Spotify_OCD_IP.mrs
+    path: ./ruleset/Spotify_IP.mrs
+  supercell_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Supercell/Supercell_OCD_IP.mrs
+    path: ./ruleset/Supercell_IP.mrs
+  tencent_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Tencent/Tencent_OCD_IP.mrs
+    path: ./ruleset/Tencent_IP.mrs
+  twitch_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/Twitch/Twitch_OCD_IP.mrs
+    path: ./ruleset/Twitch_IP.mrs
+  youtube_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/master/rule/Clash/YouTube/YouTube_OCD_IP.mrs
+    path: ./ruleset/YouTube_IP.mrs
+  ehgallery_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/Kwisma/rules/main/rules/mihomo/EHGallery/EHGallery_IP.mrs
+    path: ./ruleset/EHGallery_IP.mrs
+  tracker_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/Kwisma/rules/main/rules/mihomo/Tracker/Tracker_IP.mrs
+    path: ./ruleset/Tracker_IP.mrs
+  cn_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/Kwisma/clash-rules/release/cncidr.mrs
+    path: ./ruleset/CN_IP.mrs
+  talkatone_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: ♻️自动选择
+    url: https://raw.githubusercontent.com/qljsyph/ruleset-icon/main/mihomo/ipcidr/talkatone-ip.mrs
+    path: ./ruleset/Talkatone_IP.mrs
+sub-rules:
+  SUB-RULES:
+  # =========================
+  # 自定义直连规则区（自己手动加直连规则，就加在这里）
+  # 常用目标：
+  # - 🎯强制直连   = 真 DIRECT，适合路由器/局域网/本地设备
+  # - 🎯直连策略   = 可在面板切换的直连策略组，适合普通网站直连
+  # 示例：
+  # - DOMAIN,example.com,🎯直连策略
+  # - DOMAIN-SUFFIX,example.com,🎯直连策略
+  # - IP-CIDR,192.168.50.0/24,🎯强制直连,no-resolve
+  # =========================
+  - IP-CIDR,127.0.0.0/8,🎯强制直连,no-resolve
+  - IP-CIDR,10.0.0.0/8,🎯强制直连,no-resolve
+  - IP-CIDR,172.16.0.0/12,🎯强制直连,no-resolve
+  - IP-CIDR,192.168.0.1/32,🎯强制直连,no-resolve
+  - IP-CIDR,192.168.0.2/32,🎯强制直连,no-resolve
+  - IP-CIDR,192.168.0.0/16,🎯强制直连,no-resolve
+  - DOMAIN-SUFFIX,lan,🎯强制直连
+  - DOMAIN-SUFFIX,local,🎯强制直连
+  - DOMAIN-SUFFIX,home.arpa,🎯强制直连
+  - DOMAIN,openwrt.lan,🎯强制直连
+  - DOMAIN,router.lan,🎯强制直连
+  - DOMAIN,dlcv2.cnspeedtest.cn,🎯直连策略
+  - DOMAIN,speedtest.cn,🎯直连策略
+  - DOMAIN,core.api.mijia.tech,🎯直连策略
+  - DOMAIN,stream.api.mijia.tech,🎯直连策略
+  - DOMAIN-SUFFIX,mijia.tech,🎯直连策略
+  # 下载类大流量域名优先直连，避免被后面的服务规则或国外IP兜底送去代理
+  - DOMAIN-SUFFIX,steamcontent.com,🎯直连策略
+  - DOMAIN-SUFFIX,steamserver.net,🎯直连策略
+  - DOMAIN,dl.steam.clngaa.com,🎯强制直连
+  - DOMAIN,st.dl.bscstorage.net,🎯强制直连
+  - DOMAIN,st.dl.eccdnx.com,🎯强制直连
+  - DOMAIN,st.dl.pinyuncloud.com,🎯强制直连
+  - DOMAIN,wmsjsteam.com,🎯强制直连
+  - DOMAIN,cdn1.unrealengine.com,🎯强制直连
+  - DOMAIN,cdn2.unrealengine.com,🎯强制直连
+  - DOMAIN,download2.epicgames.com,🎯强制直连
+  - DOMAIN,download3.epicgames.com,🎯强制直连
+  - DOMAIN,download4.epicgames.com,🎯强制直连
+  - DOMAIN,fastly-download.epicgames.com,🎯强制直连
+  - DOMAIN,epicgames-download1.akamaized.net,🎯强制直连
+  - DOMAIN,download.epicgames.com,🎯强制直连
+  - DOMAIN,library-service.live.use1a.on.epicgames.com,🎯强制直连
+  - DOMAIN,launcher-public-service-prod06.ol.epicgames.com,🎯强制直连
+  - DOMAIN,entitlement-public-service-prod08.ol.epicgames.com,🎯强制直连
+  - DOMAIN,lightswitch-public-service-prod06.ol.epicgames.com,🎯强制直连
+  # =========================
+  # 自定义代理规则区（自己手动加代理规则，就加在这里）
+  # 常用目标：
+  # - 🚀全球代理
+  # - 🟢手动选择
+  # - ♻️自动选择
+  # - ⚡️均衡负载
+  # - 🔯故障转移
+  # 示例：
+  # - DOMAIN-SUFFIX,google.com,🚀全球代理
+  # - DOMAIN-KEYWORD,openai,🟢手动选择
+  # - DOMAIN-SUFFIX,telegram.org,♻️自动选择
+  # =========================
+  - RULE-SET,tencent!cn_domain,🚀全球代理
+  - DOMAIN-SUFFIX,riotgames.com,🚀全球代理
+  - DOMAIN-SUFFIX,pvp.net,🚀全球代理
+  - DOMAIN-SUFFIX,riotcdn.net,🚀全球代理
+  - DOMAIN-SUFFIX,riotstatic.com,🚀全球代理
+  - DOMAIN-SUFFIX,leagueoflegends.com,🚀全球代理
+  - DOMAIN-SUFFIX,playvalorant.com,🚀全球代理
+  - DOMAIN-SUFFIX,levelinfinite.com,🚀全球代理
+  - DOMAIN-SUFFIX,pass.levelinfinite.com,🚀全球代理
+  - DOMAIN-SUFFIX,tencentgames.com,🚀全球代理
+  - DOMAIN-SUFFIX,timistudios.com,🚀全球代理
+  - DOMAIN-SUFFIX,lightspeed-studios.com,🚀全球代理
+  - DOMAIN-SUFFIX,proximabeta.com,🚀全球代理
+  - DOMAIN-SUFFIX,hgamefree.info,🚀全球代理
+  - RULE-SET,appstore_domain,AppStore
+  - RULE-SET,applemail_domain,Apple邮箱
+  - RULE-SET,applemusic_domain,Apple音乐
+  - RULE-SET,applenews_domain,Apple新闻
+  - RULE-SET,appledaily_domain,Apple日报
+  - RULE-SET,fitnessplus_domain,FitnessPlus
+  - RULE-SET,appletv_domain,AppleTV
+  - RULE-SET,applemedia_domain,AppleTV
+  - OR,((RULE-SET,appleproxy_domain),(DOMAIN-KEYWORD,smp-device),(DOMAIN-KEYWORD,testflight)),Apple
+  - RULE-SET,biliintl_domain,哔哩东南亚
+  - OR,((RULE-SET,tiktok_domain),(DOMAIN-KEYWORD,tiktok)),TikTok
+  - OR,((RULE-SET,youtube_domain),(DOMAIN-KEYWORD,youtube)),YouTube
+  - RULE-SET,youtubemusic_domain,YouTubeMusic
+  - RULE-SET,disney_domain,Disney
+  - RULE-SET,bahamut_domain,巴哈姆特
+  - RULE-SET,hulujp_domain,Hulu
+  - RULE-SET,huluusa_domain,Hulu
+  - RULE-SET,hulu_domain,Hulu
+  - RULE-SET,tvb_domain,TVB
+  - RULE-SET,niconico_domain,ニコニコ
+  - RULE-SET,abematv_domain,AbemaTV
+  - OR,((RULE-SET,amazonprimevideo_domain),(DOMAIN-KEYWORD,avoddashs)),亚马逊TV
+  - RULE-SET,imdb_domain,IMDB
+  - RULE-SET,qobuz_domain,Qobuz
+  - RULE-SET,soundcloud_domain,SoundCloud
+  - RULE-SET,lastfm_domain,LastFM
+  - RULE-SET,4gtv_domain,4GTV
+  - OR,((RULE-SET,spotify_domain),(DOMAIN-KEYWORD,spotify)),Spotify
+  - OR,((RULE-SET,twitch_domain),(DOMAIN-KEYWORD,ttvnw)),Twitch
+  - OR,((RULE-SET,pikpak_domain),(DOMAIN-KEYWORD,pikpak)),PikPak
+  - RULE-SET,discord_domain,Discord
+  - OR,((RULE-SET,telegram_domain),(DOMAIN-KEYWORD,nicegram)),Telegram
+  - OR,((RULE-SET,github_domain),(DOMAIN-KEYWORD,github)),GitHub
+  - OR,((RULE-SET,amazon_domain),(DOMAIN-KEYWORD,avoddashs)),亚马逊电商
+  - OR,((RULE-SET,adobe_domain),(DOMAIN-KEYWORD,adobe)),Adobe
+  - RULE-SET,docker_domain,Docker
+  - OR,((RULE-SET,instagram_domain),(DOMAIN-KEYWORD,instagram)),Instagram
+  - RULE-SET,paypal_domain,PayPal
+  - OR,((RULE-SET,claude_domain),(RULE-SET,openai_domain),(RULE-SET,gemini_domain),(AND,((RULE-SET,copilot_domain),(NOT,((DOMAIN,www.bing.com))))),(DOMAIN-KEYWORD,openai),(DOMAIN-KEYWORD,openaicom-api),(DOMAIN-KEYWORD,colab),(DOMAIN-KEYWORD,developerprofiles),(DOMAIN-KEYWORD,generativelanguage)),OpenAI
+  - RULE-SET,intel_domain,因特尔
+  - OR,((RULE-SET,speedtest_domain),(DOMAIN-KEYWORD,speedtest)),Speedtest
+  - RULE-SET,reddit_domain,Reddit
+  - RULE-SET,ehgallery_domain,E站
+  - RULE-SET,pixiv_domain,Pixiv
+  - RULE-SET,wikipedia_domain,维基百科
+  - RULE-SET,blizzard_domain,暴雪
+  - OR,((RULE-SET,steam_domain),(DOMAIN-KEYWORD,steambroadcast),(DOMAIN-KEYWORD,steamstore),(DOMAIN-KEYWORD,steamuserimages)),Steam
+  - RULE-SET,rockstar_domain,Rockstar
+  - RULE-SET,playstation_domain,PlayStation
+  - RULE-SET,epic_domain,Epic
+  - RULE-SET,supercell_domain,Supercell
+  - RULE-SET,ea_domain,EA
+  - RULE-SET,sony_domain,索尼
+  - RULE-SET,hoyoverse_domain,Hoyoverse
+  - RULE-SET,18comic_domain,禁漫天堂
+  - RULE-SET,googledrive_domain,Google云盘
+  - RULE-SET,googleearth_domain,Google地图
+  - RULE-SET,googlefcm_domain,FCM
+  - RULE-SET,googlevoice_domain,GoogleVoice
+  - RULE-SET,scholar_domain,Google学术
+  - RULE-SET,hbo_domain,HBO
+  - RULE-SET,line_domain,LINE
+  - RULE-SET,wise_domain,Wise
+  - RULE-SET,signal_domain,Signal
+  - RULE-SET,picacg_domain,哔咔哔咔
+  - RULE-SET,pandora_domain,潘朵拉珠宝
+  - OR,((RULE-SET,emby_domain,Emby),(DOMAIN-KEYWORD,emby)),Emby
+  - RULE-SET,talkatone_domain,Talkatone
+  - OR,((RULE-SET,facebook_domain),(DOMAIN-KEYWORD,facebook),(DOMAIN-KEYWORD,fbcdn)),Facebook
+  - OR,((RULE-SET,twitter_domain),(DOMAIN-KEYWORD,twitter)),Twitter
+  - RULE-SET,netflix_domain,Netflix
+  - RULE-SET,tor_domain,Tor
+  - RULE-SET,fastly_domain,Fastly
+  - RULE-SET,google_domain,Google
+  - RULE-SET,globalmedia_domain,国际媒体
+  - RULE-SET,cloudflare_domain,Cloudflare
+  - RULE-SET,icloud_domain,iCloud
+  - OR,((RULE-SET,siri_domain),(RULE-SET,systemota_domain),(RULE-SET,appleid_domain),(RULE-SET,appledev_domain),(RULE-SET,applefirmware_domain),(RULE-SET,applehardware_domain),(RULE-SET,apple_domain)),AppleCN
+  - RULE-SET,beats_domain,Beats
+  - RULE-SET,douyin_domain,抖音
+  - RULE-SET,cctv_domain,CCTV
+  - RULE-SET,bilibili_domain,哔哩哔哩
+  - RULE-SET,iqiyi_domain,爱奇艺
+  - RULE-SET,kugou_domain,酷狗
+  - RULE-SET,kuwo_domain,酷我
+  - RULE-SET,neteasemusic_domain,网易云音乐
+  - RULE-SET,nga_domain,NGA
+  - OR,((RULE-SET,tracker_domain),(DOMAIN-KEYWORD,announce),(DOMAIN-KEYWORD,chdbits),(DOMAIN-KEYWORD,m-team),(DOMAIN-KEYWORD,torrent)),BT追踪器
+  - RULE-SET,baidutieba_domain,百度贴吧
+  - RULE-SET,gaode_domain,高德
+  - RULE-SET,meituan_domain,美团
+  - RULE-SET,smzdm_domain,什么值得买
+  - RULE-SET,12306_domain,12306
+  - OR,((RULE-SET,sina_domain),(DOMAIN-KEYWORD,weibo)),新浪
+  - RULE-SET,douban_domain,豆瓣
+  - RULE-SET,hupu_domain,虎扑
+  - RULE-SET,abc_domain,农业银行
+  - RULE-SET,baidu_domain,百度
+  - RULE-SET,dingtalk_domain,钉钉
+  - RULE-SET,steamcn_domain,Steam中国
+  - RULE-SET,netease_domain,网易
+  - RULE-SET,jingdong_domain,京东
+  - RULE-SET,58tongcheng_domain,58同城
+  - RULE-SET,alipay_domain,支付宝
+  - RULE-SET,pinduoduo_domain,拼多多
+  - OR,((RULE-SET,115_domain),(DOMAIN-SUFFIX,115vod.com)),115
+  - RULE-SET,4399_domain,4399
+  - RULE-SET,wechat_domain,微信
+  - RULE-SET,mihoyo_domain,Mihoyo
+  - OR,((RULE-SET,onedrive_domain),(DOMAIN-KEYWORD,1drv),(DOMAIN-KEYWORD,onedrive),(DOMAIN-KEYWORD,skydrive)),微软云盘
+  - OR,((RULE-SET,bing_domain),(RULE-SET,teams_domain),(RULE-SET,microsoftedge_domain),(RULE-SET,microsoft_domain),(DOMAIN-KEYWORD,microsoft),(DOMAIN-KEYWORD,skydrive)),微软
+  - RULE-SET,chinamedia_domain,中国媒体
+  - RULE-SET,bytedance_domain,字节跳动
+  - RULE-SET,tencent_domain,腾讯
+  - RULE-SET,alibaba_domain,阿里巴巴
+  - AND,((NETWORK,UDP),(DST-PORT,123)),🎯强制直连
+  # 域名规则未命中时，按嗅探/连接得到的目标IP自动区分国内外
+  - RULE-SET,cn_ip,🎯直连策略,no-resolve
+  - GEOIP,CN,🎯直连策略
