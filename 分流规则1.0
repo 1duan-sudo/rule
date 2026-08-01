@@ -1,0 +1,601 @@
+proxy-providers:
+  订阅提供者:
+    type: http
+    interval: 604800
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 1800
+      lazy: true
+    filter: 
+      ^(?!.*(拒绝|直连|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|traffic))
+    proxy: 🟢 直连
+    url: 填写订阅地址
+    override:
+      additional-prefix: ''
+      skip-cert-verify: true
+      udp: true
+global-ua: clash.meta
+mixed-port: 7890
+ipv6: true
+allow-lan: true
+unified-delay: true
+tcp-concurrent: false  # 倾向国内 IP：不并发抢跑多个解析结果，按 DNS 返回顺序连接
+skip-auth-prefixes:
+  - 127.0.0.1/8
+  - ::1/128
+geodata-mode: false
+geodata-loader: standard
+geo-auto-update: false
+geo-update-interval: 48
+geox-url:
+  geosite: 
+    https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat
+  mmdb: 
+    https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.metadb
+  geoip: 
+    https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat
+  asn: 
+    https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb
+external-controller: 127.0.0.1:9090
+secret: ''
+external-ui: ui
+external-ui-url: 
+  https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip
+find-process-mode: 'always'  # 启用进程识别：让 Microsoft Edge 可按 PROCESS-NAME 直连
+keep-alive-idle: 900
+keep-alive-interval: 15
+profile:
+  store-selected: true
+  store-fake-ip: false
+sniffer:
+  enable: true
+  force-dns-mapping: false
+  parse-pure-ip: true
+  override-destination: true
+  sniff:
+    HTTP:
+      ports:
+        - 80
+    TLS:
+      ports:
+        - 443
+  skip-domain:
+    - Mijia Cloud
+    - dlg.io.mi.com
+    - +.push.apple.com
+    - +.apple.com
+    - +.icloud.com
+    - +.wechat.com
+    - +.qpic.cn
+    - +.qq.com
+    - +.wechatapp.com
+    - +.vivox.com
+    - +.vivo.com.cn
+    - +.mi.com
+    - +.xiaomi.com
+    - +.mijia.tech
+    - +.oray.com
+    - +.sunlogin.net
+    - +.msftconnecttest.com
+    - +.msftncsi.com
+    - +.lan
+    - +.local
+    - localhost.ptlogin2.qq.com
+    - +.cn
+    - +.中国
+    - +.公司
+    - +.网络
+    - RULE-SET:private_domain
+    - RULE-SET:direct_domain
+    - RULE-SET:apple_cn_domain
+    - RULE-SET:apple_firmware_domain
+    - RULE-SET:steam_cn_domain
+    - RULE-SET:game_cn_domain
+    - RULE-SET:media_cn_domain
+    - RULE-SET:bank_cn_domain
+    - RULE-SET:pt_cn_domain
+    - RULE-SET:cn_domain
+    - +.baidu.com
+    - +.bdstatic.com
+    - +.bcebos.com
+    - +.baidubce.com
+    - +.gtimg.com
+    - +.tencent.com
+    - +.myqcloud.com
+    - +.dnspod.cn
+    - +.weixin.qq.com
+    - +.wx.qq.com
+    - +.taobao.com
+    - +.tmall.com
+    - +.alicdn.com
+    - +.alipay.com
+    - +.aliyun.com
+    - +.aliyuncs.com
+    - +.mmstat.com
+    - +.1688.com
+    - +.ele.me
+    - +.amap.com
+    - +.jd.com
+    - +.jdcdn.com
+    - +.360buyimg.com
+    - +.pinduoduo.com
+    - +.yangkeduo.com
+    - +.douyin.com
+    - +.douyincdn.com
+    - +.toutiao.com
+    - +.snssdk.com
+    - +.bytedance.com
+    - +.byteimg.com
+    - +.ixigua.com
+    - +.kuaishou.com
+    - +.ksyuncdn.com
+    - +.bilibili.com
+    - +.biliapi.net
+    - +.bilivideo.com
+    - +.hdslb.com
+    - +.163.com
+    - +.126.net
+    - +.126.com
+    - +.netease.com
+    - +.music.163.com
+    - +.youdao.com
+    - +.sina.com.cn
+    - +.sina.com
+    - +.weibo.com
+    - +.weibocdn.com
+    - +.sohu.com
+    - +.sohucs.com
+    - +.iqiyi.com
+    - +.qiyipic.com
+    - +.youku.com
+    - +.ykimg.com
+    - +.mgtv.com
+    - +.miguvideo.com
+    - +.zhihu.com
+    - +.zhimg.com
+    - +.xiaohongshu.com
+    - +.xhscdn.com
+    - +.meituan.com
+    - +.dianping.com
+    - +.maoyan.com
+    - +.ctrip.com
+    - +.qunar.com
+    - +.12306.cn
+    - +.china-railway.com.cn
+    - +.huawei.com
+    - +.huaweicloud.com
+    - +.dbankcdn.com
+    - +.vmall.com
+    - +.honor.com
+    - +.xiaomi.net
+    - +.oppo.com
+    - +.oppomobile.com
+    - +.heytapmobi.com
+    - +.coloros.com
+    - +.vivo.com
+    - +.lenovo.com.cn
+    - +.lenovomm.com
+    - +.360.cn
+    - +.qhimg.com
+    - +.qhres.com
+    - +.360safe.com
+    - +.cnki.net
+    - +.wanfangdata.com.cn
+    - +.cqvip.com
+    - +.10086.cn
+    - +.chinamobile.com
+    - +.189.cn
+    - +.chinatelecom.com.cn
+    - +.chinaunicom.com
+    - +.10010.com
+    - +.gov.cn
+    - +.edu.cn
+  skip-dst-address:
+    - 0.0.0.0/8
+    - 10.0.0.0/8
+    - 100.64.0.0/10
+    - 127.0.0.0/8
+    - 169.254.0.0/16
+    - 172.16.0.0/12
+    - 192.168.0.0/16
+    - 224.0.0.0/4
+    - 240.0.0.0/4
+    - ::1/128
+    - fc00::/7
+    - fe80::/10
+    - ff00::/8
+    - 223.5.5.5/32
+    - 223.6.6.6/32
+    - 119.29.29.29/32
+    - 119.28.28.28/32
+    - 180.76.76.76/32
+    - 114.114.114.114/32
+    - 114.114.115.115/32
+    - 101.226.4.6/32
+    - 218.30.118.6/32
+    - 1.12.12.12/32
+    - 120.53.53.53/32
+tun:
+  enable: true
+  stack: gvisor
+  mtu: 1500
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+  strict-route: false
+  # 避免 TUN 接管内网/CGNAT/保留地址，减少 100.64.x.x 等本地 ICMP 回包超时日志
+  route-exclude-address:
+    - 0.0.0.0/8
+    - 10.0.0.0/8
+    - 100.64.0.0/10
+    - 127.0.0.0/8
+    - 169.254.0.0/16
+    - 172.16.0.0/12
+    - 192.168.0.0/16
+    - 224.0.0.0/4
+    - 240.0.0.0/4
+    - ::1/128
+    - fc00::/7
+    - fe80::/10
+    - ff00::/8
+dns:
+  enable: true
+  use-hosts: false
+  listen: 0.0.0.0:1053
+  ipv6: true
+  prefer-h3: false
+  respect-rules: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-range6: fdfe:dcba:9876::1/64
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+    - +.lan
+    - +.local
+    - +.home.arpa
+    - localhost.ptlogin2.qq.com
+    - +.msftconnecttest.com
+    - +.msftncsi.com
+    - +.push.apple.com
+    - +.apple.com
+    - +.icloud.com
+    - +.qq.com
+    - +.qpic.cn
+    - +.wechat.com
+    - +.wechatapp.com
+    - +.mi.com
+    - +.xiaomi.com
+    - +.mijia.tech
+    - +.vivo.com.cn
+    - +.vivox.com
+    - +.oray.com
+    - +.sunlogin.net
+    - +.steamcontent.com
+    - +.steamserver.net
+    - +.steamstatic.com
+    - +.steamchina.com
+  # 倾向国内 IP：以下 DNS 均使用腾讯/阿里国内 DNS，尽量获得国内 CDN 解析结果
+  default-nameserver:
+    - 119.29.29.29
+    - 223.5.5.5
+  proxy-server-nameserver:
+    - 119.29.29.29
+    - 223.5.5.5
+  direct-nameserver:
+    - 119.29.29.29
+    - 223.5.5.5
+  nameserver:
+    - 119.29.29.29
+    - 223.5.5.5
+proxies:
+  - name: 🟢 直连
+    type: direct
+    udp: true
+proxy-groups:
+  - name: 🚀全球代理
+    type: select
+    proxies:
+      - 🟢手动选择
+      - ♻️自动选择
+      - 🔯故障转移
+      - 🎯强制直连
+  - name: GLOBAL
+    type: select
+    proxies:
+      - 🚀全球代理
+      - 🟢手动选择
+      - ♻️自动选择
+      - 🔯故障转移
+      - 🎯强制直连
+      - 🎬流媒体
+      - DIRECT
+  - name: 🎬流媒体
+    type: select
+    proxies:
+      - ♻️自动选择
+      - 🚀全球代理
+      - 🟢手动选择
+      - 🔯故障转移
+      - 🎯强制直连
+  - name: 🟢手动选择
+    type: select
+    include-all: true
+    exclude-filter: 
+      (?i)(直连|剩余|流量|到期|过期|已用|订阅|官网|机场|direct|traffic|expire|expired|used|total|panel|channel|author|email)
+  - name: ♻️自动选择
+    type: url-test
+    tolerance: 80
+    url: http://www.gstatic.com/generate_204
+    interval: 1800
+    lazy: true
+    timeout: 2000
+    max-failed-times: 2
+    include-all: true
+    exclude-filter: 
+      (?i)(直连|剩余|流量|到期|过期|已用|订阅|官网|机场|direct|traffic|expire|expired|used|total|panel|channel|author|email)
+  - name: 🔯故障转移
+    type: fallback
+    url: http://www.gstatic.com/generate_204
+    interval: 1800
+    lazy: true
+    timeout: 2000
+    max-failed-times: 2
+    include-all: true
+    exclude-filter: 
+      (?i)(直连|剩余|流量|到期|过期|已用|订阅|官网|机场|direct|traffic|expire|expired|used|total|panel|channel|author|email)
+  - name: 🎯强制直连
+    type: select
+    hidden: true
+    proxies:
+      - DIRECT
+rules:
+  # Microsoft Edge：整浏览器直连。必须放在 Google/YouTube/流媒体等代理规则之前。
+  # Windows
+  - PROCESS-NAME,msedge.exe,🎯强制直连
+  - PROCESS-NAME,msedge,🎯强制直连
+  # macOS
+  - PROCESS-NAME,Microsoft Edge,🎯强制直连
+  - PROCESS-NAME,Microsoft Edge Helper,🎯强制直连
+  # Android 版 Edge，部分内核/平台可能不识别包名规则；识别不到时不会影响其他规则。
+  - PROCESS-NAME,com.microsoft.emmx,🎯强制直连
+  - PROCESS-NAME,com.microsoft.emmx.beta,🎯强制直连
+  - PROCESS-NAME,com.microsoft.emmx.dev,🎯强制直连
+  - PROCESS-NAME,com.microsoft.emmx.canary,🎯强制直连
+  # Edge/Bing 常用域名直连兜底，避免搜索、联想词、主页请求经代理出口。
+  - DOMAIN-SUFFIX,bing.com,🎯强制直连
+  - DOMAIN-SUFFIX,bing.net,🎯强制直连
+  - DOMAIN-SUFFIX,msn.com,🎯强制直连
+  - DOMAIN-SUFFIX,microsoft.com,🎯强制直连
+  - DOMAIN-SUFFIX,microsoftonline.com,🎯强制直连
+  - DOMAIN-SUFFIX,msedge.net,🎯强制直连
+  - DOMAIN-SUFFIX,windows.net,🎯强制直连
+  - IP-CIDR,127.0.0.0/8,🎯强制直连,no-resolve
+  - IP-CIDR,10.0.0.0/8,🎯强制直连,no-resolve
+  - IP-CIDR,100.64.0.0/10,🎯强制直连,no-resolve
+  - IP-CIDR,169.254.0.0/16,🎯强制直连,no-resolve
+  - IP-CIDR,172.16.0.0/12,🎯强制直连,no-resolve
+  - IP-CIDR,192.168.0.0/16,🎯强制直连,no-resolve
+  - IP-CIDR,224.0.0.0/4,🎯强制直连,no-resolve
+  - IP-CIDR6,::1/128,🎯强制直连,no-resolve
+  - IP-CIDR6,fc00::/7,🎯强制直连,no-resolve
+  - IP-CIDR6,fe80::/10,🎯强制直连,no-resolve
+  - DOMAIN-SUFFIX,lan,🎯强制直连
+  - DOMAIN-SUFFIX,local,🎯强制直连
+  - DOMAIN-SUFFIX,home.arpa,🎯强制直连
+  - DOMAIN,openwrt.lan,🎯强制直连
+  - DOMAIN,router.lan,🎯强制直连
+  # 栗子漫画 / LiZiMH：公开官网、下载入口、页面资源直连
+  # 说明：当前未能完整反编译 APK/IPA；以下为官网、下载链路、公开页面可确认域名。
+  - DOMAIN-SUFFIX,lizimh.com,🎯强制直连
+  - DOMAIN,alicm.a.etoote.com,🎯强制直连
+  - DOMAIN-SUFFIX,etoote.com,🎯强制直连
+  - DOMAIN,edu-30130.sz.gfp.tencent-cloud.com,🎯强制直连
+  - DOMAIN-SUFFIX,gfp.tencent-cloud.com,🎯强制直连
+  - DOMAIN,docs.qq.com,🎯强制直连
+  - DOMAIN,p0.meituan.net,🎯强制直连
+  - DOMAIN,p1.meituan.net,🎯强制直连
+  - DOMAIN,play.google.com,🚀全球代理
+  - DOMAIN-SUFFIX,play.google.com,🚀全球代理
+  - DOMAIN-SUFFIX,play.googleapis.com,🚀全球代理
+  - DOMAIN-SUFFIX,android.clients.google.com,🚀全球代理
+  - DOMAIN-SUFFIX,android.apis.google.com,🚀全球代理
+  - DOMAIN-SUFFIX,android.googleapis.com,🚀全球代理
+  - DOMAIN-SUFFIX,googleapis.com,🚀全球代理
+  - DOMAIN-SUFFIX,googleusercontent.com,🚀全球代理
+  - DOMAIN-SUFFIX,gstatic.com,🚀全球代理
+  - DOMAIN-SUFFIX,gvt1.com,🚀全球代理
+  - DOMAIN-SUFFIX,gvt2.com,🚀全球代理
+  - DOMAIN-SUFFIX,gvt3.com,🚀全球代理
+  - DOMAIN-SUFFIX,ggpht.com,🚀全球代理
+  - DOMAIN-SUFFIX,dl.google.com,🚀全球代理
+  - DOMAIN-SUFFIX,dl-ssl.google.com,🚀全球代理
+  - DOMAIN-SUFFIX,services.googleapis.cn,🚀全球代理
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🚀全球代理
+  - DOMAIN-SUFFIX,m.google.com,🚀全球代理
+  # YouTube 单独保持走原来的全球代理，不进入“🎬流媒体”组
+  - DOMAIN-SUFFIX,youtube.com,🚀全球代理
+  - DOMAIN-SUFFIX,youtu.be,🚀全球代理
+  - DOMAIN-SUFFIX,ytimg.com,🚀全球代理
+  - DOMAIN-SUFFIX,googlevideo.com,🚀全球代理
+  - DOMAIN-SUFFIX,youtubei.googleapis.com,🚀全球代理
+  - DOMAIN-SUFFIX,yt3.ggpht.com,🚀全球代理
+  # 非 YouTube 流媒体走“🎬流媒体”，默认使用“♻️自动选择”
+  - DOMAIN-SUFFIX,netflix.com,🎬流媒体
+  - DOMAIN-SUFFIX,netflix.net,🎬流媒体
+  - DOMAIN-SUFFIX,nflxvideo.net,🎬流媒体
+  - DOMAIN-SUFFIX,nflximg.net,🎬流媒体
+  - DOMAIN-SUFFIX,nflxext.com,🎬流媒体
+  - DOMAIN-SUFFIX,nflxso.net,🎬流媒体
+  - DOMAIN-SUFFIX,fast.com,🎬流媒体
+  - DOMAIN-SUFFIX,disneyplus.com,🎬流媒体
+  - DOMAIN-SUFFIX,disney-plus.net,🎬流媒体
+  - DOMAIN-SUFFIX,dssott.com,🎬流媒体
+  - DOMAIN-SUFFIX,bamgrid.com,🎬流媒体
+  - DOMAIN-SUFFIX,hulu.com,🎬流媒体
+  - DOMAIN-SUFFIX,huluim.com,🎬流媒体
+  - DOMAIN-SUFFIX,max.com,🎬流媒体
+  - DOMAIN-SUFFIX,hbomax.com,🎬流媒体
+  - DOMAIN-SUFFIX,hbo.com,🎬流媒体
+  - DOMAIN-SUFFIX,hbonow.com,🎬流媒体
+  - DOMAIN-SUFFIX,hbogo.com,🎬流媒体
+  - DOMAIN-SUFFIX,hbogoasia.com,🎬流媒体
+  - DOMAIN-SUFFIX,primevideo.com,🎬流媒体
+  - DOMAIN-SUFFIX,amazonvideo.com,🎬流媒体
+  - DOMAIN-SUFFIX,media-amazon.com,🎬流媒体
+  - DOMAIN-SUFFIX,twitch.tv,🎬流媒体
+  - DOMAIN-SUFFIX,ttvnw.net,🎬流媒体
+  - DOMAIN-SUFFIX,jtvnw.net,🎬流媒体
+  - DOMAIN-SUFFIX,spotify.com,🎬流媒体
+  - DOMAIN-SUFFIX,scdn.co,🎬流媒体
+  - DOMAIN-SUFFIX,spoti.fi,🎬流媒体
+  - DOMAIN-SUFFIX,paramountplus.com,🎬流媒体
+  - DOMAIN-SUFFIX,peacocktv.com,🎬流媒体
+  - DOMAIN-SUFFIX,discoveryplus.com,🎬流媒体
+  - DOMAIN-SUFFIX,dazn.com,🎬流媒体
+  - DOMAIN-SUFFIX,dazn-api.com,🎬流媒体
+  - DOMAIN-SUFFIX,dzncdn.com,🎬流媒体
+  - DOMAIN-SUFFIX,crunchyroll.com,🎬流媒体
+  - DOMAIN-SUFFIX,crunchyrollsvc.com,🎬流媒体
+  - DOMAIN,tv.apple.com,🎬流媒体
+  - DOMAIN-SUFFIX,tv.apple.com,🎬流媒体
+  - DOMAIN-SUFFIX,cn,🎯强制直连
+  - DOMAIN-SUFFIX,中国,🎯强制直连
+  - DOMAIN-SUFFIX,公司,🎯强制直连
+  - DOMAIN-SUFFIX,网络,🎯强制直连
+  - DOMAIN-SUFFIX,vivo.com.cn,🎯强制直连
+  - DOMAIN-SUFFIX,ai.xajtl.com,🎯强制直连
+  - DOMAIN-SUFFIX,cf-1.imgio.club,🎯强制直连
+  - DOMAIN-SUFFIX,vivox.com,🎯强制直连
+  - DOMAIN-SUFFIX,mi.com,🎯强制直连
+  - DOMAIN-SUFFIX,xiaomi.com,🎯强制直连
+  - DOMAIN-SUFFIX,mijia.tech,🎯强制直连
+  - DOMAIN-SUFFIX,qq.com,🎯强制直连
+  - DOMAIN-SUFFIX,qpic.cn,🎯强制直连
+  - DOMAIN-SUFFIX,wechat.com,🎯强制直连
+  - DOMAIN-SUFFIX,wechatapp.com,🎯强制直连
+  - DOMAIN-SUFFIX,baidu.com,🎯强制直连
+  - DOMAIN-SUFFIX,bilibili.com,🎯强制直连
+  - DOMAIN-SUFFIX,alicdn.com,🎯强制直连
+  - DOMAIN-SUFFIX,aliyuncs.com,🎯强制直连
+  - DOMAIN-SUFFIX,taobao.com,🎯强制直连
+  - DOMAIN-SUFFIX,tmall.com,🎯强制直连
+  - DOMAIN-SUFFIX,jd.com,🎯强制直连
+  - DOMAIN-SUFFIX,steamcontent.com,🎯强制直连
+  - DOMAIN-SUFFIX,steamserver.net,🎯强制直连
+  - DOMAIN-SUFFIX,steamstatic.com,🎯强制直连
+  - DOMAIN-SUFFIX,steamchina.com,🎯强制直连
+  - DOMAIN,dl.steam.clngaa.com,🎯强制直连
+  - DOMAIN,dl.steam.ksyna.com,🎯强制直连
+  - DOMAIN,st.dl.bscstorage.net,🎯强制直连
+  - DOMAIN,st.dl.eccdnx.com,🎯强制直连
+  - DOMAIN,st.dl.pinyuncloud.com,🎯强制直连
+  - DOMAIN-SUFFIX,windowsupdate.com,🎯强制直连
+  - DOMAIN-SUFFIX,download.windowsupdate.com,🎯强制直连
+  - DOMAIN-SUFFIX,msftconnecttest.com,🎯强制直连
+  - DOMAIN-SUFFIX,msftncsi.com,🎯强制直连
+  - RULE-SET,private_domain,🎯强制直连
+  - RULE-SET,direct_domain,🎯强制直连
+  - RULE-SET,apple_cn_domain,🎯强制直连
+  - RULE-SET,apple_firmware_domain,🎯强制直连
+  - RULE-SET,steam_cn_domain,🎯强制直连
+  - RULE-SET,game_cn_domain,🎯强制直连
+  - RULE-SET,media_cn_domain,🎯强制直连
+  - RULE-SET,bank_cn_domain,🎯强制直连
+  - RULE-SET,pt_cn_domain,🎯强制直连
+  - RULE-SET,cn_domain,🎯强制直连
+  - RULE-SET,cn_ip,🎯强制直连  # 倾向国内 IP：允许域名解析后按中国 IP 直连
+  - AND,((NETWORK,UDP),(DST-PORT,123)),🎯强制直连
+  - MATCH,🚀全球代理
+rule-providers:
+  private_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: 
+      https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.mrs
+    proxy: 🚀全球代理
+  direct_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: 
+      https://fastly.jsdelivr.net/gh/Lanlan13-14/Rules@main/rules/Domain/direct.mrs
+    proxy: 🚀全球代理
+  apple_cn_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: 
+      https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/apple%40cn.mrs
+    proxy: 🚀全球代理
+  apple_firmware_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: 
+      https://fastly.jsdelivr.net/gh/Lanlan13-14/Rules@main/rules/Domain/applefirmware.mrs
+    proxy: 🚀全球代理
+  steam_cn_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: 
+      https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/steam%40cn.mrs
+    proxy: 🚀全球代理
+  game_cn_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: 
+      https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-games%40cn.mrs
+    proxy: 🚀全球代理
+  media_cn_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: 
+      https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-media-cn.mrs
+    proxy: 🚀全球代理
+  bank_cn_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: 
+      https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-bank-cn.mrs
+    proxy: 🚀全球代理
+  pt_cn_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: 
+      https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-pt.mrs
+    proxy: 🚀全球代理
+  cn_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    proxy: 🚀全球代理
+    url: https://fastly.jsdelivr.net/gh/Kwisma/clash-rules@release/direct.mrs
+    path: ./ruleset/CN_Domain.mrs
+  cn_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    proxy: 🚀全球代理
+    url: https://fastly.jsdelivr.net/gh/Kwisma/clash-rules@release/cncidr.mrs
+    path: ./ruleset/CN_IP.mrs
